@@ -12585,7 +12585,8 @@ function renderDebt(){
     const remaining = Math.max(0, b.total - paidSum);
     const pct = b.total > 0 ? Math.min(100, Math.round(paidSum/b.total*100)) : 100;
     const isOverdue = remaining > 0 && b.co < td;
-    return { ...b, _paidSum: paidSum, _remaining: remaining, _pct: pct, _isOverdue: isOverdue };
+    const _origIdx = bookings.indexOf(b);
+    return { ...b, _paidSum: paidSum, _remaining: remaining, _pct: pct, _isOverdue: isOverdue, _origIdx };
   }).filter(b => b._remaining > 0);
 
   // Apply filter
@@ -12645,7 +12646,7 @@ function renderDebt(){
   listEl.innerHTML = list.map(b => {
     const sym = b.cur==='USD'?'$':b.cur==='EUR'?'€':'EGP ';
     const statusClass = b._isOverdue ? 'debt-unpaid' : b._paidSum > 0 ? 'debt-partial' : 'debt-unpaid';
-    const bi = bookings.indexOf(b);
+    const bi = b._origIdx;
     const pmLabel = {Cash:'💵 Cash',Card:'💳 Card','Bank Transfer':'🏦 Bank',Online:'🌐 Online'};
 
     // Payment history summary
