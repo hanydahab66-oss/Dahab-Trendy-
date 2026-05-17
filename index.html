@@ -818,6 +818,8 @@ select option{background:#1a1a2e;color:var(--text)}
 <div class="card"><div class="ctitle">🏨 <span class="t" data-ar="حالة الغرف" data-en="Room Status">Room Status</span></div><div id="db-rooms"></div></div>
 <div class="card"><div class="ctitle">📋 <span class="t" data-ar="آخر الحجوزات" data-en="Recent Bookings">Recent Bookings</span></div><div id="db-recent-alerts" style="margin-bottom:8px;"></div><div id="db-recent"></div></div>
 </div>
+<!-- 🔔 EMPTY ROOM ALERTS -->
+<div id="db-empty-room-alerts" style="margin-top:12px;"></div>
 <!-- 🎂 BIRTHDAY ALERTS -->
 <div id="db-birthday-alerts" style="margin-top:12px;"></div>
 <!-- FEATURE 1: Revenue Charts -->
@@ -1006,6 +1008,19 @@ style="flex:1;padding:9px 8px;border-radius:8px;border:2px solid rgba(74,144,217
 <div class="fld"><label>Phone / WhatsApp</label><input id="iv-phone" placeholder="+20..." oninput="buildPreview()"></div>
 <div class="fld"><label>Email</label><input id="iv-email" type="email" placeholder="guest@email.com" oninput="buildPreview()"></div>
 <div class="fld s2"><label>Nationality</label><input id="iv-nat" placeholder="Egyptian" oninput="buildPreview()"></div>
+<div class="fld s2">
+  <label>👤 صورة الضيف / Guest Photo</label>
+  <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+    <label style="background:rgba(201,168,76,0.15);color:var(--gold);border:1px solid rgba(201,168,76,0.4);border-radius:8px;padding:6px 14px;cursor:pointer;font-size:12px;font-weight:700;">
+      📷 رفع صورة
+      <input type="file" accept="image/*" style="display:none;" onchange="uploadInvIdPhoto(this)">
+    </label>
+    <button onclick="clearInvIdPhoto()" style="background:rgba(231,76,60,0.1);color:#e74c3c;border:1px solid rgba(231,76,60,0.3);border-radius:8px;padding:6px 12px;font-size:12px;cursor:pointer;display:none;" id="iv-id-clear">حذف</button>
+    <span style="font-size:11px;color:var(--muted);" id="iv-id-status">لم يتم رفع صورة</span>
+  </div>
+  <div id="iv-id-preview" style="margin-top:8px;"></div>
+</div>
+
 </div>
 </div>
 <div class="card" style="border-color:rgba(201,168,76,0.35);">
@@ -1630,7 +1645,10 @@ style="flex:1;padding:9px 8px;border-radius:8px;border:2px solid rgba(74,144,217
 </div>
 </div>
 <div class="card">
-<div class="ctitle">💱 Exchange Rate</div>
+<div class="ctitle">📸 صور الغرف / Room Type Photos</div>
+<div style="font-size:11px;color:var(--muted);margin-bottom:12px;">أضف صورة لكل نوع غرفة — ستظهر في بطاقات الغرف والحجوزات</div>
+<div id="room-photos-grid" style="display:flex;flex-direction:column;gap:12px;"></div>
+</div>
 <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap;">
 <div id="ex-rate-status" style="font-size:11px;color:var(--muted);">⏳ لم يتم التحديث بعد</div>
 <button class="btn bg bsm" onclick="fetchLiveRates()" id="fetch-rates-btn">🔄 تحديث تلقائي Online</button>
@@ -1693,6 +1711,15 @@ style="flex:1;padding:9px 8px;border-radius:8px;border:2px solid rgba(74,144,217
 </div>
 </div>
 <div>
+<div class="card">
+<div class="ctitle">🔔 تنبيه الغرف الفاضية</div>
+<div class="fld">
+  <label>تنبيه إذا كانت الغرفة فاضية أكثر من (أيام)</label>
+  <input type="number" id="st-empty-days" min="1" max="365" value="7" style="max-width:100px;"
+    oninput="localStorage.setItem('dta_empty_alert_days', this.value); renderDashboard();">
+</div>
+<div style="font-size:11px;color:var(--muted);margin-top:4px;">يظهر تنبيه في الـ Dashboard للغرف التي لم يكن فيها حجز لأكثر من هذه المدة</div>
+</div>
 <div class="card">
 <div class="ctitle">📜 Cancellation Policy</div>
 <div class="fld"><label>Title</label><input id="st-ptitle" placeholder="Free Cancellation 48hrs" oninput="savePolicies()"></div>
@@ -1872,6 +1899,17 @@ style="width:100%;padding:9px 10px;border-radius:8px;border:2px solid rgba(155,8
 <div style="margin-top:8px;font-size:11px;color:var(--muted);">🌅 هذا الحجز امتداد بعد مغادرة مبكرة — الليالي المتبقية</div>
 <button type="button" onclick="clearLinked()" style="margin-top:6px;background:none;border:1px solid rgba(231,76,60,0.4);color:#e74c3c;border-radius:5px;padding:3px 8px;font-size:11px;cursor:pointer;font-family:Arial,sans-serif;">✕ إزالة الربط</button>
 </div>
+</div>
+<div class="sdiv">📸 صور الحجز / Booking Photos</div>
+<div style="margin-bottom:12px;">
+  <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:8px;">
+    <label style="background:rgba(201,168,76,0.15);color:var(--gold);border:1px solid rgba(201,168,76,0.4);border-radius:8px;padding:7px 14px;cursor:pointer;font-size:12px;font-weight:700;">
+      📷 إضافة صورة
+      <input type="file" accept="image/*" multiple style="display:none;" onchange="addBkPhotos(this)">
+    </label>
+    <span style="font-size:11px;color:var(--muted);">صورة الهوية، الغرفة، أو أي مستند</span>
+  </div>
+  <div id="bm-photos-preview" style="display:flex;flex-wrap:wrap;gap:8px;"></div>
 </div>
 <div class="flex mt">
 <button class="btn bg" onclick="saveBM()">💾 Save</button>
@@ -3016,6 +3054,7 @@ function LSS(k,v){try{localStorage.setItem(k,JSON.stringify(v));return true;}cat
 let bookings   = LS("dta_bk",[]);
 let prices     = LS("dta_pr",JSON.parse(JSON.stringify(DEF_PRICES)));
 let duPrices   = LS("dta_du",JSON.parse(JSON.stringify(DEF_DU_PRICES)));
+let roomPhotos = LS("dta_room_photos",{});
 let roomSt     = LS("dta_rs",{});
 let policies   = LS("dta_pol",{title:"Free Cancellation 48hrs",text:"Free cancellation up to 48 hours before check-in. After that, 1 night charge applies.",fee:"1night",prepay:"none",pnotes:""});
 let expenses   = LS("dta_ex",[]);
@@ -3202,6 +3241,91 @@ function renderBirthdayAlerts(){
   el.innerHTML="<div class='card' style='padding:12px 16px;border-color:rgba(245,197,24,0.4);background:rgba(245,197,24,0.04);margin-bottom:0;'>"+
     "<div class='ctitle' style='color:#f5c518;'>🎂 "+(ar?"أعياد الميلاد القادمة (7 أيام)":"Upcoming Birthdays (7 days)")+
     " <span style='background:#f5c518;color:#1a1a2e;border-radius:20px;padding:1px 8px;font-size:11px;'>"+upcoming.length+"</span></div>"+
+    "<div style='display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:8px;'>"+cards.join("")+"</div>"+
+  "</div>";
+}
+
+// ═══════════ EMPTY ROOM ALERTS ═══════════
+function renderEmptyRoomAlerts(){
+  const el = document.getElementById("db-empty-room-alerts");
+  if(!el) return;
+
+  const threshold = parseInt(localStorage.getItem('dta_empty_alert_days')||'7');
+  const td = toDay();
+  const todayD = new Date(td);
+
+  const emptyRooms = [];
+
+  ROOMS.forEach(r => {
+    // تجاهل غرف الصيانة
+    if(roomSt[r] === 'maintenance') return;
+
+    // آخر حجز انتهى في هذه الغرفة
+    const pastBks = bookings.filter(b =>
+      String(b.room) === String(r) &&
+      b.status !== 'Cancelled' &&
+      b.co <= td
+    );
+    // الحجوزات القادمة أو الحالية
+    const futureBks = bookings.filter(b =>
+      String(b.room) === String(r) &&
+      b.status !== 'Cancelled' &&
+      b.co > td
+    );
+
+    // لو في حجز حالي أو قادم — مش فاضية
+    const hasActive = futureBks.some(b => b.ci <= td);
+    if(hasActive) return;
+
+    // احسب من امتى الغرفة فاضية
+    let emptyFrom;
+    if(pastBks.length){
+      // آخر يوم مغادرة
+      const lastCO = pastBks.sort((a,b)=>b.co.localeCompare(a.co))[0].co;
+      emptyFrom = new Date(lastCO);
+    } else {
+      // مفيش حجوزات خالص — اعتبر من بداية السنة أو 365 يوم
+      emptyFrom = new Date(todayD);
+      emptyFrom.setFullYear(emptyFrom.getFullYear() - 1);
+    }
+
+    const emptyDays = Math.round((todayD - emptyFrom) / 86400000);
+
+    // أقرب حجز قادم
+    const nextBk = futureBks.sort((a,b)=>a.ci.localeCompare(b.ci))[0];
+    const daysToNext = nextBk ? Math.round((new Date(nextBk.ci) - todayD)/86400000) : null;
+
+    if(emptyDays >= threshold){
+      emptyRooms.push({ r, emptyDays, nextBk, daysToNext });
+    }
+  });
+
+  if(!emptyRooms.length){ el.innerHTML=''; return; }
+
+  // ترتيب: الأكثر فراغاً أولاً
+  emptyRooms.sort((a,b) => b.emptyDays - a.emptyDays);
+
+  const cards = emptyRooms.map(({r, emptyDays, nextBk, daysToNext}) => {
+    const urgency = emptyDays >= threshold*3 ? 'rgba(231,76,60,0.15)' : emptyDays >= threshold*2 ? 'rgba(230,126,34,0.12)' : 'rgba(149,165,166,0.12)';
+    const borderClr = emptyDays >= threshold*3 ? 'rgba(231,76,60,0.5)' : emptyDays >= threshold*2 ? 'rgba(230,126,34,0.4)' : 'rgba(149,165,166,0.35)';
+    const txtClr = emptyDays >= threshold*3 ? '#e74c3c' : emptyDays >= threshold*2 ? '#e67e22' : '#95a5a6';
+    const nextInfo = nextBk
+      ? "<div style='font-size:10px;color:#4cda7a;margin-top:3px;'>📅 حجز قادم: "+nextBk.name+" (خلال "+daysToNext+" يوم)</div>"
+      : "<div style='font-size:10px;color:var(--muted);margin-top:3px;'>⚠️ لا يوجد حجز قادم</div>";
+    return "<div style='background:"+urgency+";border:1px solid "+borderClr+";border-radius:8px;padding:9px 13px;display:flex;align-items:center;gap:10px;'>"+
+      "<span style='font-size:22px;'>🏨</span>"+
+      "<div style='flex:1;'>"+
+        "<div style='font-weight:700;font-size:12px;color:"+txtClr+";'>غرفة "+r+"</div>"+
+        "<div style='font-size:11px;color:var(--muted);margin-top:1px;'>فاضية منذ <strong style='color:"+txtClr+";'>"+emptyDays+" يوم</strong></div>"+
+        nextInfo+
+      "</div>"+
+      "<button onclick='bookRoom("+r+")' style='background:var(--gold);color:#1a1a2e;border:none;padding:6px 12px;border-radius:6px;cursor:pointer;font-size:11px;font-weight:700;white-space:nowrap;'>➕ احجز</button>"+
+    "</div>";
+  });
+
+  el.innerHTML="<div class='card' style='padding:12px 16px;border-color:rgba(231,76,60,0.35);background:rgba(231,76,60,0.03);margin-bottom:0;'>"+
+    "<div class='ctitle' style='color:#e74c3c;'>🔔 غرف فاضية أكثر من "+threshold+" أيام"+
+    " <span style='background:#e74c3c;color:#fff;border-radius:20px;padding:1px 8px;font-size:11px;'>"+emptyRooms.length+"</span></div>"+
     "<div style='display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:8px;'>"+cards.join("")+"</div>"+
   "</div>";
 }
@@ -3727,7 +3851,14 @@ if(b.dob){
 }
 return "<tr style='"+rowStyle+"'>"+
 "<td class='col-hide-sm' style='color:var(--gold);font-size:10px;'>"+b.id+"</td>"+
-"<td><div style='font-weight:700;font-size:12px;cursor:pointer;color:var(--gold);text-decoration:underline dotted;' onclick='openGuestCard(\""+b.name.replace(/"/g,"&quot;")+"\")' title='بروفايل الضيف'>"+b.name+guestDot+"</div><div style='font-size:10px;color:var(--muted);'>"+b.phone+"</div>"+(b.flightNo?"<div style='font-size:10px;color:#7ab8f5;'>✈️ "+b.flightNo+(b.airline?" · "+b.airline:"")+"</div>":"")+(b.linkedBooking?"<div style='margin-top:3px;background:rgba(52,152,219,0.12);border:1px solid rgba(52,152,219,0.35);border-radius:5px;padding:2px 6px;font-size:9px;color:#7ab8f5;display:inline-block;'>🔗 "+(currentLang==="ar"?"امتداد":"Extension")+": "+b.linkedBooking.id+"</div>":"")+groupTagBadge+bdBadge+"</td>"+"</td>"+
+"<td><div style='display:flex;align-items:center;gap:8px;'>"+
+(()=>{
+  // صورة الضيف الرئيسي (إن وجدت)
+  const gPhoto = b.allGuestsData&&b.allGuestsData[0]&&b.allGuestsData[0].photo ? b.allGuestsData[0].photo : (b.guestPhoto||'');
+  if(gPhoto) return "<img src='"+gPhoto+"' style='width:60px;height:60px;border-radius:50%;object-fit:cover;border:2px solid rgba(201,168,76,0.5);flex-shrink:0;cursor:pointer;' onclick=\"viewGuestPhotoById('"+b.id+"')\" title='صورة الضيف'>";
+  return "<div style='width:60px;height:60px;border-radius:50%;background:rgba(201,168,76,0.1);border:1px dashed rgba(201,168,76,0.3);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;'>👤</div>";
+})()
++"<div><div style='font-weight:700;font-size:12px;cursor:pointer;color:var(--gold);text-decoration:underline dotted;' onclick='openGuestCard(\""+b.name.replace(/"/g,"&quot;")+"\")' title='بروفايل الضيف'>"+b.name+guestDot+"</div><div style='font-size:10px;color:var(--muted);'>"+b.phone+"</div>"+(b.flightNo?"<div style='font-size:10px;color:#7ab8f5;'>✈️ "+b.flightNo+(b.airline?" · "+b.airline:"")+"</div>":"")+(b.linkedBooking?"<div style='margin-top:3px;background:rgba(52,152,219,0.12);border:1px solid rgba(52,152,219,0.35);border-radius:5px;padding:2px 6px;font-size:9px;color:#7ab8f5;display:inline-block;'>🔗 "+(currentLang==="ar"?"امتداد":"Extension")+": "+b.linkedBooking.id+"</div>":"")+groupTagBadge+bdBadge+"</div></div>"+"</td>"+
 "<td>Rm "+b.room+"<br><span style='font-size:10px;color:var(--muted);'>"+b.type+"</span>"+
 (b.dayuse?"<br><span class='bdg bg-orange' style='font-size:9px;'>🌤️ Day Use</span>":"")+
 (b.walkin?"<br><span class='bdg' style='background:rgba(46,204,113,0.2);color:#2ecc71;font-size:9px;border:1px solid rgba(46,204,113,0.4);'>🚶 Walk-in</span>":"")+
@@ -4260,6 +4391,7 @@ var lnm=document.getElementById("bm-linked-name"); if(lnm) lnm.value="";
 }
 // لو New Booking ابن الصف الأول
 if(bkEdit===null) rebuildGuestRows([]);
+loadBkPhotos(bkEdit!==null ? bookings[bkEdit] : null);
 document.getElementById("bk-modal").classList.add("on");
 }
 function saveBM(){
@@ -4405,6 +4537,7 @@ linkedBooking:(function(){
   }
   return bkEdit!==null?(bookings[bkEdit].linkedBooking||null):null;
 })(),
+photos: _bkPhotos.length > 0 ? _bkPhotos : (bkEdit!==null?(bookings[bkEdit].photos||[]):[]),
 };
 if(bkEdit!==null) bookings[bkEdit]=bk; else bookings.push(bk);
 sv("dta_bk",bookings);
@@ -5622,6 +5755,29 @@ const actualPaid=b.payments?b.payments.reduce((s,p)=>s+p.amount,0):(b.prepay||0)
 document.getElementById("iv-prepay").value=actualPaid;
 document.getElementById("iv-bf").checked=b.bf;
 document.getElementById("iv-notes").value=b.notes||"";
+// Auto-load guest photo first, then fallback to booking photos
+const guestPhotoSrc = b.allGuestsData && b.allGuestsData[0] && b.allGuestsData[0].photo
+  ? b.allGuestsData[0].photo
+  : (b.guestPhoto || '');
+if(guestPhotoSrc){
+  _invIdPhoto = guestPhotoSrc;
+  const prev=document.getElementById('iv-id-preview');
+  const status=document.getElementById('iv-id-status');
+  const clr=document.getElementById('iv-id-clear');
+  if(prev) prev.innerHTML='<img src="'+_invIdPhoto+'" style="max-width:100%;max-height:180px;object-fit:contain;border-radius:8px;border:2px solid rgba(201,168,76,0.4);cursor:pointer;" onclick="viewInvIdPhoto()">';
+  if(status) status.textContent='✅ صورة الضيف';
+  if(clr) clr.style.display='inline-flex';
+} else if(b.photos && b.photos.length > 0){
+  _invIdPhoto = b.photos[0];
+  const prev=document.getElementById('iv-id-preview');
+  const status=document.getElementById('iv-id-status');
+  const clr=document.getElementById('iv-id-clear');
+  if(prev) prev.innerHTML='<img src="'+_invIdPhoto+'" style="max-width:100%;max-height:180px;object-fit:contain;border-radius:8px;border:2px solid rgba(201,168,76,0.4);cursor:pointer;" onclick="viewInvIdPhoto()">';
+  if(status) status.textContent='✅ تم تحميل الصورة من الحجز';
+  if(clr) clr.style.display='inline-flex';
+} else {
+  clearInvIdPhoto();
+}
 // Load transfer data into invoice
 const hasTrInv=b.hasTransfer||false;
 document.getElementById("iv-transfer").checked=hasTrInv;
@@ -5728,7 +5884,10 @@ const isAvail=(st==="available");
 // Check for future booking even when room is occupied/checkin/checkout
 const hasFutureRes=(st==="occupied"||st==="checkin"||st==="checkout")&&(res||resStandby);
 const futureBook=res||resStandby;
-return "<div class='card "+RSTATUS_CLS[st]+"' style='margin-bottom:0;'>"+
+const rtype = b ? b.type : (res ? res.type : (ci ? ci.type : (co ? co.type : '')));
+const rphoto = rtype && roomPhotos[rtype] ? roomPhotos[rtype] : '';
+return "<div class='card "+RSTATUS_CLS[st]+"' style='margin-bottom:0;'>"+ 
+(rphoto ? "<div style='width:100%;height:160px;border-radius:10px;overflow:hidden;margin-bottom:10px;box-shadow:0 3px 12px rgba(0,0,0,0.4);'><img src='"+rphoto+"' style='width:100%;height:100%;object-fit:cover;' onclick=\"viewRoomPhoto('"+rtype+"')\"></div>" : "")+
 "<div style='display:flex;justify-content:space-between;align-items:center;margin-bottom:7px;'>"+
 "<span style='font-size:14px;font-weight:700;color:var(--gold);'>Room "+r+"</span>"+
 "<span style='display:flex;gap:4px;align-items:center;'>"+
@@ -6730,10 +6889,20 @@ proformaBanner+
 "<div><div style='font-size:9px;color:#888;'>Rooms</div><div style='font-weight:700;font-size:10px;color:#c9a84c;'>"+d.lines.length+"</div></div>"+
 "</div>"+
 "<div class='invp-sec'>Bill To</div>"+
-"<div class='invp-gbox'>"+
-"<div><strong>"+d.name+"</strong></div><div>"+d.nat+"</div>"+
-"<div>"+d.phone+"</div><div>"+d.email+"</div>"+
-"</div>"+
+(()=>{
+  const roomTypes = [...new Set((d.lines||[]).map(l=>l.type).filter(Boolean))];
+  const pics = roomTypes.map(t=>roomPhotos[t]).filter(Boolean);
+  const roomPicsHtml = pics.length
+    ? "<div style='display:flex;gap:6px;flex-wrap:wrap;align-items:flex-start;'>"+
+      pics.map(p=>"<img src='"+p+"' style='width:120px;height:80px;object-fit:cover;border-radius:6px;border:1px solid #ddd;'>").join('')+
+      "</div>"
+    : "";
+  return "<div class='invp-gbox' style='display:flex;gap:12px;align-items:flex-start;'>"+
+    "<div style='flex:1;'><div><strong>"+d.name+"</strong></div><div>"+d.nat+"</div><div>"+d.phone+"</div><div>"+d.email+"</div></div>"+
+    (pics.length ? "<div style='flex-shrink:0;text-align:center;'><div style='font-size:9px;color:#888;margin-bottom:4px;'>🏨 Room</div>"+roomPicsHtml+"</div>" : "")+
+    (_invIdPhoto ? "<div style='flex-shrink:0;text-align:center;'><div style='font-size:9px;color:#888;margin-bottom:4px;'>👤 Guest</div><img src='"+_invIdPhoto+"' style='width:80px;height:80px;object-fit:cover;border-radius:50%;border:2px solid #c9a84c;'></div>" : "")+
+  "</div>";
+})()+
 "<div class='invp-sec'>Stay Details</div>"+
 "<table class='invp-tbl'><thead><tr><th>Description</th><th>Qty</th><th>Rate</th><th>Total</th></tr></thead>"+
 "<tbody>"+roomRows+extRows+roomChargesRows+
@@ -6888,7 +7057,17 @@ if(!w){alert("Please allow popups to print.");return;}
 w.document.write("<!DOCTYPE html><html><head><meta charset='utf-8'><title>Invoice "+curInvNo+"</title><style>body{font-family:Arial,sans-serif;color:#1a1a2e;padding:36px;max-width:700px;margin:0 auto}.hdr{display:flex;justify-content:space-between;border-bottom:3px solid #c9a84c;padding-bottom:14px;margin-bottom:20px}.badge{background:#1a1a2e;color:#c9a84c;padding:5px 12px;border-radius:4px;font-size:11px;font-weight:bold;letter-spacing:2px}.meta{display:flex;gap:24px;margin-bottom:16px;font-size:11px;color:#555}.meta b{color:#1a1a2e;display:block;font-size:12px}.sec{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#b8860b;margin-bottom:6px;font-weight:bold}.gbox{background:#f8f6f0;padding:11px 14px;border-radius:5px;margin-bottom:16px;display:grid;grid-template-columns:1fr 1fr;gap:5px;font-size:11px;color:#555}table{width:100%;border-collapse:collapse;margin-bottom:16px}th{background:#1a1a2e;color:#c9a84c;padding:7px 9px;font-size:10px;text-align:left}td{padding:8px 9px;font-size:11px;border-bottom:1px solid #eee}.tot{display:flex;justify-content:flex-end;margin-bottom:16px}.tbox{min-width:200px}.tr{display:flex;justify-content:space-between;font-size:11px;padding:3px 0;color:#555}.tr.g{border-top:2px solid #c9a84c;padding-top:6px;margin-top:3px;font-size:15px;font-weight:bold;color:#1a1a2e}.pol{background:#f8f6f0;padding:8px 12px;border-radius:5px;margin-bottom:12px;font-size:10px;color:#666;border-left:3px solid #c9a84c}.ftr{text-align:center;padding-top:10px;border-top:1px solid #eee;color:#999;font-size:10px;line-height:1.8}</style></head><body>"+
 "<div class='hdr'><div><strong style='font-size:18px;'>🌊 "+PROP.name+"</strong><p style='color:#666;font-size:11px;margin:3px 0 0;'>"+PROP.address+"</p><p style='color:#666;font-size:11px;'>"+PROP.phone+" · "+PROP.email+"</p></div><span class='badge'>INVOICE</span></div>"+
 "<div class='meta'><div><span>Invoice No.</span><b>"+curInvNo+"</b></div><div><span>Date</span><b>"+fmtD(td)+"</b></div><div><span>Currency</span><b>"+invCur+"</b></div><div><span>Status</span><span style='padding:2px 8px;border-radius:20px;font-size:10px;font-weight:bold;"+ss+"'>"+d.status+"</span></div></div>"+
-"<div class='sec'>Bill To</div><div class='gbox'><p><b>"+d.name+"</b></p><p>"+d.nat+"</p><p>"+d.phone+"</p><p>"+d.email+"</p></div>"+
+"<div class='sec'>Bill To</div>"+
+(()=>{
+  const roomTypes2=[...new Set((d.lines||[]).map(l=>l.type).filter(Boolean))];
+  const pics2=roomTypes2.map(t=>roomPhotos[t]).filter(Boolean);
+  const roomPicsHtml2=pics2.length?"<div style='display:flex;gap:6px;flex-wrap:wrap;'>"+pics2.map(p=>"<img src='"+p+"' style='width:130px;height:85px;object-fit:cover;border-radius:6px;border:1px solid #ddd;'>").join('')+"</div>":"";
+  return "<div class='gbox' style='display:flex;gap:14px;align-items:flex-start;'>"+
+    "<div style='flex:1;display:grid;grid-template-columns:1fr 1fr;gap:5px;font-size:11px;color:#555;'><p><b>"+d.name+"</b></p><p>"+d.nat+"</p><p>"+d.phone+"</p><p>"+d.email+"</p></div>"+
+    (pics2.length?"<div style='flex-shrink:0;text-align:center;'><div style='font-size:9px;color:#888;margin-bottom:4px;'>🏨 Room</div>"+roomPicsHtml2+"</div>":"")+
+    (_invIdPhoto?"<div style='flex-shrink:0;text-align:center;'><div style='font-size:9px;color:#888;margin-bottom:3px;'>👤 Guest</div><img src='"+_invIdPhoto+"' style='width:80px;height:80px;object-fit:cover;border-radius:50%;border:2px solid #c9a84c;'></div>":"")+
+  "</div>";
+})()+
 "<div class='sec'>Stay Details</div>"+
 "<table><thead><tr><th>Description</th><th>Qty</th><th>Rate</th><th>Amount</th></tr></thead>"+
 "<tbody>"+(d.lines&&d.lines.length?d.lines.map(l=>{const ntsCol=l.isDU?'Day Use':l.isMonthly?Math.round(l.months)+'mo':l.n+' nt'+(l.n!=1?'s':'');const rateLabel=l.isMonthly?'/mo':'/nt';const desc='Room '+l.room+' — '+l.type+'<br><span style="color:#888;font-size:9px;">'+l.adults+' adult'+(l.adults!=1?'s':'')+(l.children>0?' · '+l.children+' child'+(l.children!=1?'ren':''):'')+' · '+fmtD(l.ci)+(l.co&&!l.isDU?' → '+fmtD(l.co):'')+(d.bf?' · Breakfast ✓':'')+"</span>";return "<tr><td>"+desc+"</td><td>"+ntsCol+"</td><td>"+d.sym+l.rate.toFixed(2)+rateLabel+"</td><td><b>"+d.sym+l.lineTotal.toFixed(2)+"</b></td></tr>";}).join(''):"<tr><td>—</td><td>—</td><td>—</td><td>—</td></tr>")+
@@ -7062,6 +7241,7 @@ renderSettings();
 function renderSettings(){
 const symMap={USD:"$",EGP:"£",EUR:"€"};
 const sym=symMap[sCur]||"$";
+setTimeout(renderRoomPhotosGrid, 50);
 document.getElementById("price-fields").innerHTML=RTYPES.map(t=>"<div class='fld'>"+
 "<label>"+t+"</label>"+
 "<div style='display:flex;align-items:center;gap:5px;'>"+
@@ -7086,6 +7266,8 @@ document.getElementById("st-pnotes").value=policies.pnotes||"";
 document.getElementById("st-rate").value=exRate;
 document.getElementById("st-eur-rate").value=eurRate;
 document.getElementById("st-usd-eur").value=(eurRate/exRate).toFixed(4);
+const emptyDaysEl=document.getElementById("st-empty-days");
+if(emptyDaysEl) emptyDaysEl.value=parseInt(localStorage.getItem('dta_empty_alert_days')||'7');
 renderDUPrices();
 }
 function updPrice(t,v){if(prices[t])prices[t][sCur.toLowerCase()]=Number(v);renderSettings();}
@@ -7111,6 +7293,141 @@ document.getElementById("du-price-fields").innerHTML=RTYPES.map(t=>"<div class='
 function updDUPrice(t,v){if(duPrices[t])duPrices[t][sDUCur.toLowerCase()]=Number(v);}
 function saveDUPrices(){sv("dta_du",duPrices);showToast("✓ Day Use Prices Saved!");}
 function resetDUPrices(){duPrices=JSON.parse(JSON.stringify(DEF_DU_PRICES));sv("dta_du",duPrices);renderDUPrices();}
+
+
+// ═══════════════════════════════════════════════
+// 📸 ROOM TYPE PHOTOS
+// ═══════════════════════════════════════════════
+function renderRoomPhotosGrid(){
+  const grid = document.getElementById('room-photos-grid');
+  if(!grid) return;
+  grid.innerHTML = RTYPES.map(type => {
+    const photo = roomPhotos[type] || '';
+    return '<div style="display:flex;align-items:center;gap:12px;padding:10px;background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.2);border-radius:10px;">' +
+      '<div style="width:80px;height:60px;border-radius:8px;overflow:hidden;background:rgba(0,0,0,0.3);flex-shrink:0;display:flex;align-items:center;justify-content:center;">' +
+      (photo ? '<img src="'+photo+'" style="width:100%;height:100%;object-fit:cover;cursor:pointer;" onclick="viewRoomPhoto(\''+type+'\')">' : '<span style="font-size:22px;">🏠</span>') +
+      '</div>' +
+      '<div style="flex:1;">' +
+      '<div style="font-weight:700;color:var(--gold);margin-bottom:6px;">'+type+'</div>' +
+      '<div style="display:flex;gap:6px;">' +
+      '<label style="background:rgba(201,168,76,0.15);color:var(--gold);border:1px solid rgba(201,168,76,0.4);border-radius:6px;padding:4px 10px;cursor:pointer;font-size:11px;font-weight:700;">📷 '+(photo?'تغيير':'إضافة')+'<input type="file" accept="image/*" style="display:none;" onchange="uploadRoomPhoto(\''+type+'\', this)"></label>' +
+      (photo ? '<button onclick="deleteRoomPhoto(\''+type+'\')" style="background:rgba(231,76,60,0.15);color:#e74c3c;border:1px solid rgba(231,76,60,0.4);border-radius:6px;padding:4px 10px;font-size:11px;cursor:pointer;">🗑️ حذف</button>' : '') +
+      '</div></div></div>';
+  }).join('');
+}
+function uploadRoomPhoto(type, input){
+  const file = input.files[0]; if(!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e){
+    const img = new Image();
+    img.onload = function(){
+      const canvas = document.createElement('canvas');
+      const MAX=600; let w=img.width,h=img.height;
+      if(w>MAX){h=Math.round(h*MAX/w);w=MAX;} if(h>MAX){w=Math.round(w*MAX/h);h=MAX;}
+      canvas.width=w;canvas.height=h;
+      canvas.getContext('2d').drawImage(img,0,0,w,h);
+      roomPhotos[type]=canvas.toDataURL('image/jpeg',0.75);
+      sv('dta_room_photos',roomPhotos);
+      renderRoomPhotosGrid(); renderRooms();
+      sNotify('📸 تم الحفظ','صورة '+type+' تم حفظها','success',2500);
+    };
+    img.src=e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+function deleteRoomPhoto(type){delete roomPhotos[type];sv('dta_room_photos',roomPhotos);renderRoomPhotosGrid();renderRooms();}
+function viewRoomPhoto(type){
+  const photo=roomPhotos[type]; if(!photo) return;
+  const w=window.open('','_blank','width=600,height=500');
+  w.document.write('<body style="margin:0;background:#000;display:flex;align-items:center;justify-content:center;height:100vh;"><img src="'+photo+'" style="max-width:100%;max-height:100%;object-fit:contain;"></body>');
+}
+
+// ═══════════════════════════════════════════════
+// 📸 BOOKING PHOTOS
+// ═══════════════════════════════════════════════
+// ═══════════════════════════════════════════════
+// 🪪 INVOICE ID PHOTO
+// ═══════════════════════════════════════════════
+let _invIdPhoto = '';
+function uploadInvIdPhoto(input){
+  const file = input.files[0]; if(!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e){
+    const img = new Image();
+    img.onload = function(){
+      const canvas = document.createElement('canvas');
+      const MAX=900; let w=img.width,h=img.height;
+      if(w>MAX){h=Math.round(h*MAX/w);w=MAX;} if(h>MAX){w=Math.round(w*MAX/h);h=MAX;}
+      canvas.width=w;canvas.height=h;
+      canvas.getContext('2d').drawImage(img,0,0,w,h);
+      _invIdPhoto = canvas.toDataURL('image/jpeg',0.82);
+      const prev = document.getElementById('iv-id-preview');
+      const status = document.getElementById('iv-id-status');
+      const clr = document.getElementById('iv-id-clear');
+      if(prev) prev.innerHTML = '<img src="'+_invIdPhoto+'" style="max-width:100%;max-height:180px;object-fit:contain;border-radius:8px;border:2px solid rgba(201,168,76,0.4);cursor:pointer;" onclick="viewInvIdPhoto()">';
+      if(status) status.textContent = '✅ تم رفع الصورة';
+      if(clr) clr.style.display='inline-flex';
+      buildPreview();
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+  input.value='';
+}
+function clearInvIdPhoto(){
+  _invIdPhoto='';
+  const prev=document.getElementById('iv-id-preview'); if(prev) prev.innerHTML='';
+  const status=document.getElementById('iv-id-status'); if(status) status.textContent='لم يتم رفع صورة';
+  const clr=document.getElementById('iv-id-clear'); if(clr) clr.style.display='none';
+  buildPreview();
+}
+function viewInvIdPhoto(){
+  if(!_invIdPhoto) return;
+  const w=window.open('','_blank','width=700,height=550');
+  w.document.write('<body style="margin:0;background:#000;display:flex;align-items:center;justify-content:center;height:100vh;"><img src="'+_invIdPhoto+'" style="max-width:100%;max-height:100%;object-fit:contain;"></body>');
+}
+
+let _bkPhotos=[];
+function addBkPhotos(input){
+  Array.from(input.files).forEach(function(file){
+    const reader=new FileReader();
+    reader.onload=function(e){
+      const img=new Image();
+      img.onload=function(){
+        const canvas=document.createElement('canvas');
+        const MAX=800;let w=img.width,h=img.height;
+        if(w>MAX){h=Math.round(h*MAX/w);w=MAX;} if(h>MAX){w=Math.round(w*MAX/h);h=MAX;}
+        canvas.width=w;canvas.height=h;
+        canvas.getContext('2d').drawImage(img,0,0,w,h);
+        _bkPhotos.push(canvas.toDataURL('image/jpeg',0.75));
+        renderBkPhotosPreview();
+      };
+      img.src=e.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
+  input.value='';
+}
+function renderBkPhotosPreview(){
+  const div=document.getElementById('bm-photos-preview'); if(!div) return;
+  div.innerHTML=_bkPhotos.map(function(p,i){
+    return '<div style="position:relative;width:80px;height:80px;"><img src="'+p+'" style="width:80px;height:80px;object-fit:cover;border-radius:8px;border:2px solid rgba(201,168,76,0.4);cursor:pointer;" onclick="viewBkPhoto('+i+')"><button onclick="_bkPhotos.splice('+i+',1);renderBkPhotosPreview()" style="position:absolute;top:-6px;right:-6px;background:#e74c3c;color:#fff;border:none;border-radius:50%;width:20px;height:20px;font-size:12px;cursor:pointer;line-height:1;">×</button></div>';
+  }).join('');
+}
+function viewBkPhoto(i){
+  const photo=_bkPhotos[i]; if(!photo) return;
+  const w=window.open('','_blank','width=700,height=600');
+  w.document.write('<body style="margin:0;background:#000;display:flex;align-items:center;justify-content:center;height:100vh;"><img src="'+photo+'" style="max-width:100%;max-height:100%;object-fit:contain;"></body>');
+}
+function viewGuestPhotoById(bkId){
+  const bk = bookings.find(b=>b.id===bkId); if(!bk) return;
+  const src = bk.allGuestsData&&bk.allGuestsData[0]&&bk.allGuestsData[0].photo ? bk.allGuestsData[0].photo : (bk.guestPhoto||'');
+  if(!src) return;
+  const w=window.open('','_blank','width=500,height=500');
+  w.document.write('<body style="margin:0;background:#000;display:flex;align-items:center;justify-content:center;height:100vh;"><img src="'+src+'" style="max-width:100%;max-height:100%;object-fit:contain;border-radius:8px;"></body>');
+}
+function loadBkPhotos(bk){_bkPhotos=bk&&bk.photos?[...bk.photos]:[];renderBkPhotosPreview();}
+// u25d0u25d0u25d0u25d0u25d0u25d0u25d0u25d0u25d0u25d0u25d0u25d0u25d0u25d0u25d0u25d0u25d0u25d0u25d0u25d0u25d0u25d0u25d0 ROOM u0026 BOOKING PHOTOS u25d0u25d0u25d0u25d0u25d0u25d0u25d0u25d0u25d0u25d0u25d0u25d0u25d0u25d0u25d0u25d0u25d0u25d0u25d0u25d0u25d0u25d0u25d0
 function savePolicies(){
 policies={
 title:document.getElementById("st-ptitle").value,
@@ -8367,7 +8684,7 @@ chartOccupancy=new Chart(c2,cfgOcc);
 }
 // Patch renderDashboard to also call renderCharts
 const _origRenderDashboard=renderDashboard;
-renderDashboard=function(){_origRenderDashboard.apply(this,arguments);if(typeof updateBirthdayBadge==='function') updateBirthdayBadge();};
+renderDashboard=function(){_origRenderDashboard.apply(this,arguments);if(typeof updateBirthdayBadge==='function') updateBirthdayBadge();renderEmptyRoomAlerts();};
 // ════════════════════════════════════════════
 // ══ FEATURE 2: VISUAL BOOKING CALENDAR ══
 // ════════════════════════════════════════════
@@ -13827,11 +14144,73 @@ function rebuildGuestRows(savedData){
     const inner = document.createElement("div");
     inner.style.cssText = `background:${bgClr};border:1px solid ${borderClr};border-radius:10px;padding:12px 14px;`;
 
-    // عنوان الصف
+    // عنوان الصف + صورة الضيف
+    const titleRow = document.createElement("div");
+    titleRow.style.cssText = "display:flex;align-items:center;gap:10px;margin-bottom:10px;";
+
+    // صورة الضيف (avatar)
+    const photoWrap = document.createElement("div");
+    photoWrap.style.cssText = "position:relative;flex-shrink:0;";
+
+    const photoImg = document.createElement("div");
+    photoImg.id = `${pfx}-photo-thumb`;
+    const savedPhoto = d.photo || "";
+    photoImg.innerHTML = savedPhoto
+      ? `<img src="${savedPhoto}" style="width:80px;height:80px;border-radius:50%;object-fit:cover;border:3px solid ${isMain?'var(--gold)':isChild?'#7ab8f5':'rgba(255,255,255,0.3)'};cursor:pointer;" onclick="viewGuestPhoto('${pfx}')" title="عرض الصورة">`
+      : `<div style="width:80px;height:80px;border-radius:50%;background:${isMain?'rgba(201,168,76,0.15)':isChild?'rgba(52,152,219,0.1)':'rgba(255,255,255,0.06)'};border:2px dashed ${isMain?'rgba(201,168,76,0.5)':isChild?'rgba(52,152,219,0.3)':'rgba(255,255,255,0.15)'};display:flex;align-items:center;justify-content:center;font-size:32px;">👤</div>`;
+    photoWrap.appendChild(photoImg);
+
+    // زر رفع صورة
+    const photoBtn = document.createElement("label");
+    photoBtn.style.cssText = "position:absolute;bottom:-2px;right:-2px;background:var(--gold);color:#1a1a2e;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:11px;cursor:pointer;font-weight:700;box-shadow:0 2px 6px rgba(0,0,0,0.4);";
+    photoBtn.title = "رفع صورة الضيف";
+    photoBtn.innerHTML = "📷";
+    const photoInput = document.createElement("input");
+    photoInput.type = "file";
+    photoInput.accept = "image/*";
+    photoInput.style.display = "none";
+    photoInput.addEventListener("change", function(){
+      const file = this.files[0]; if(!file) return;
+      const reader = new FileReader();
+      reader.onload = function(ev){
+        const img2 = new Image();
+        img2.onload = function(){
+          const canvas = document.createElement("canvas");
+          const MAX = 300; let w=img2.width, h=img2.height;
+          if(w>h){if(w>MAX){h=Math.round(h*MAX/w);w=MAX;}}else{if(h>MAX){w=Math.round(w*MAX/h);h=MAX;}}
+          canvas.width=w; canvas.height=h;
+          canvas.getContext("2d").drawImage(img2,0,0,w,h);
+          const dataUrl = canvas.toDataURL("image/jpeg", 0.80);
+          // تحديث الـ thumb
+          const thumbDiv = document.getElementById(`${pfx}-photo-thumb`);
+          if(thumbDiv) thumbDiv.innerHTML = `<img src="${dataUrl}" style="width:80px;height:80px;border-radius:50%;object-fit:cover;border:3px solid ${isMain?'var(--gold)':isChild?'#7ab8f5':'rgba(255,255,255,0.3)'};cursor:pointer;" onclick="viewGuestPhoto('${pfx}')" title="عرض الصورة">`;
+          // حفظ الصورة في dataset
+          const hiddenInp = document.getElementById(`${pfx}-photo-data`);
+          if(hiddenInp) hiddenInp.value = dataUrl;
+        };
+        img2.src = ev.target.result;
+      };
+      reader.readAsDataURL(file);
+      this.value = "";
+    });
+    photoBtn.appendChild(photoInput);
+    photoWrap.appendChild(photoBtn);
+
+    // حقل مخفي لحفظ بيانات الصورة
+    const photoHidden = document.createElement("input");
+    photoHidden.type = "hidden";
+    photoHidden.id = `${pfx}-photo-data`;
+    photoHidden.value = savedPhoto;
+    photoWrap.appendChild(photoHidden);
+
+    titleRow.appendChild(photoWrap);
+
     const title = document.createElement("div");
-    title.style.cssText = `font-size:11px;font-weight:700;color:${isMain?'var(--gold)':isChild?'#7ab8f5':'var(--muted)'};letter-spacing:1px;margin-bottom:10px;`;
+    title.style.cssText = `font-size:11px;font-weight:700;color:${isMain?'var(--gold)':isChild?'#7ab8f5':'var(--muted)'};letter-spacing:1px;`;
     title.textContent = label;
-    inner.appendChild(title);
+    titleRow.appendChild(title);
+
+    inner.appendChild(titleRow);
 
     // الشبكة
     const grid = document.createElement("div");
@@ -13914,6 +14293,14 @@ function rebuildGuestRows(savedData){
   syncMainGuest();
 }
 
+// عرض صورة الضيف في نافذة منفصلة
+function viewGuestPhoto(pfx){
+  const src = document.getElementById(`${pfx}-photo-data`)?.value;
+  if(!src) return;
+  const w = window.open('','_blank','width=500,height=500');
+  w.document.write('<body style="margin:0;background:#000;display:flex;align-items:center;justify-content:center;height:100vh;"><img src="'+src+'" style="max-width:100%;max-height:100%;object-fit:contain;border-radius:8px;"></body>');
+}
+
 // مزامنة bm-name, bm-phone, etc مع الضيف الرئيسي (للتوافق مع الكود القديم)
 function syncMainGuest(){
   const sync = (newId, oldId) => {
@@ -13947,6 +14334,7 @@ function collectAllGuestData(){
       idno  : document.getElementById(`g${i}-idno`)?.value||'',
       dob   : document.getElementById(`g${i}-dob`)?.value||'',
       gender: document.getElementById(`g${i}-gender`)?.value||'',
+      photo : document.getElementById(`g${i}-photo-data`)?.value||'',
     };
   });
 }
