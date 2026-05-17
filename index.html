@@ -746,6 +746,7 @@ select option{background:#1a1a2e;color:var(--text)}
 <button class="nb" onclick="goPage('bookings',this)">📋 <span class="t" data-ar="الحجوزات" data-en="Bookings">Bookings</span></button>
 <button class="nb" onclick="goPage('rooms',this)">🏨 <span class="t" data-ar="الغرف" data-en="Rooms">Rooms</span></button>
 <button class="nb" onclick="goPage('expenses',this)">💸 <span class="t" data-ar="المصروفات" data-en="Expenses">Expenses</span></button>
+<button class="nb" onclick="goPage('debt',this)" style="background:rgba(231,76,60,0.12);color:#e74c3c;border-color:rgba(231,76,60,0.4);font-weight:700;">💳 <span class="t" data-ar="مديونيات" data-en="Debt">مديونيات</span></button>
 <button class="nb" onclick="goPage('invoice',this)">📄 <span class="t" data-ar="الفاتورة" data-en="Invoice">Invoice</span></button>
 <button class="nb" onclick="goPage('restaurant',this)">🍽️ <span class="t" data-ar="المطعم" data-en="Restaurant">Restaurant</span></button>
 <button class="nb" onclick="goPage('settings',this)">⚙️ <span class="t" data-ar="الإعدادات" data-en="Settings">Settings</span></button>
@@ -3123,7 +3124,7 @@ document.querySelectorAll(".page").forEach(p=>p.classList.remove("on"));
 document.querySelectorAll(".nb").forEach(b=>b.classList.remove("act"));
 document.getElementById("page-"+id).classList.add("on");
 if(btn) btn.classList.add("act");
-const map={dashboard:renderDashboard,bookings:renderBookings,rooms:renderRooms,expenses:renderExpenses,settings:renderSettings,restaurant:renderRestaurant,guestsreg:renderGuestsRegister};
+const map={dashboard:renderDashboard,bookings:renderBookings,rooms:renderRooms,expenses:renderExpenses,settings:renderSettings,restaurant:renderRestaurant,guestsreg:renderGuestsRegister,debt:renderDebt};
 if(map[id]) map[id]();
 if(id==="invoice"){renderInvRooms();buildPreview();}
 }
