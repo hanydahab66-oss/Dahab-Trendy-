@@ -135,6 +135,71 @@ select option{background:#1a1a2e;color:var(--text)}
 .rest-tab button{padding:7px 16px;border-radius:8px;border:1px solid var(--bdr);background:transparent;color:var(--muted);cursor:pointer;font-size:12px;font-family:Arial,sans-serif;font-weight:700;}
 .rest-tab button.act{background:var(--gold);color:#1a1a2e;border-color:var(--gold);}
 .rest-tab button:hover{background:rgba(201,168,76,0.15);color:var(--gold);}
+
+/* ══ RESTAURANT ENHANCED ══ */
+.menu-cat-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px;padding:12px;background:rgba(0,0,0,0.2);border-radius:12px;border:1px solid var(--bdr);}
+.menu-cat-tab{display:flex;flex-direction:column;align-items:center;gap:3px;padding:10px 14px;border-radius:10px;border:1.5px solid var(--bdr);background:transparent;color:var(--muted);cursor:pointer;font-size:11px;font-family:Arial,sans-serif;font-weight:700;transition:all .2s;min-width:70px;}
+.menu-cat-tab .cat-emoji{font-size:22px;line-height:1;}
+.menu-cat-tab .cat-count{font-size:9px;opacity:.7;font-weight:400;}
+.menu-cat-tab:hover{background:rgba(201,168,76,0.1);border-color:rgba(201,168,76,0.4);color:var(--gold);}
+.menu-cat-tab.act{border-color:var(--gold);color:#1a1a2e;font-weight:800;}
+.menu-cat-tab.cat-meat.act{background:linear-gradient(135deg,#c0392b,#e74c3c);border-color:#e74c3c;}
+.menu-cat-tab.cat-chicken.act{background:linear-gradient(135deg,#e67e22,#f39c12);border-color:#f39c12;}
+.menu-cat-tab.cat-fish.act{background:linear-gradient(135deg,#2980b9,#3498db);border-color:#3498db;}
+.menu-cat-tab.cat-drinks.act{background:linear-gradient(135deg,#16a085,#1abc9c);border-color:#1abc9c;}
+.menu-cat-tab.cat-sweets.act{background:linear-gradient(135deg,#8e44ad,#9b59b6);border-color:#9b59b6;}
+.menu-cat-tab.cat-snacks.act{background:linear-gradient(135deg,#27ae60,#2ecc71);border-color:#2ecc71;}
+.menu-cat-tab.cat-shisha.act{background:linear-gradient(135deg,#5d3a8e,#8e44ad);border-color:#8e44ad;}
+.menu-cat-tab.cat-other.act{background:linear-gradient(135deg,#7f8c8d,#95a5a6);border-color:#95a5a6;}
+.menu-cat-tab.cat-all.act{background:linear-gradient(135deg,var(--gold),var(--gold2));border-color:var(--gold);}
+
+.menu-section-header{display:flex;align-items:center;gap:10px;margin:16px 0 12px;padding-bottom:8px;border-bottom:2px solid var(--bdr);}
+.menu-section-icon{font-size:28px;}
+.menu-section-title{font-size:16px;font-weight:800;color:var(--gold);letter-spacing:1px;}
+.menu-section-count{font-size:11px;color:var(--muted);background:rgba(255,255,255,0.07);padding:2px 8px;border-radius:20px;}
+
+.menu-item-card{background:var(--card);border:1.5px solid var(--bdr);border-radius:14px;padding:14px;text-align:center;cursor:pointer;transition:all .2s;position:relative;overflow:hidden;user-select:none;}
+.menu-item-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;opacity:0;transition:opacity .2s;}
+.menu-item-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,0.3);}
+.menu-item-card:hover::before{opacity:1;}
+.menu-item-card.cat-meat::before{background:linear-gradient(90deg,#c0392b,#e74c3c);}
+.menu-item-card.cat-chicken::before{background:linear-gradient(90deg,#e67e22,#f39c12);}
+.menu-item-card.cat-fish::before{background:linear-gradient(90deg,#2980b9,#3498db);}
+.menu-item-card.cat-drinks::before{background:linear-gradient(90deg,#16a085,#1abc9c);}
+.menu-item-card.cat-sweets::before{background:linear-gradient(90deg,#8e44ad,#9b59b6);}
+.menu-item-card.cat-snacks::before{background:linear-gradient(90deg,#27ae60,#2ecc71);}
+.menu-item-card.cat-shisha::before{background:linear-gradient(90deg,#5d3a8e,#8e44ad);}
+.menu-item-card.cat-other::before{background:linear-gradient(90deg,#7f8c8d,#95a5a6);}
+.menu-item-card.in-cart{border-color:rgba(230,126,34,0.7);background:rgba(230,126,34,0.1);}
+.menu-item-emoji-wrap{font-size:36px;margin-bottom:6px;display:block;line-height:1;}
+.menu-item-name{font-size:12px;font-weight:700;color:var(--text);margin-bottom:4px;line-height:1.3;}
+.menu-item-price{font-size:15px;font-weight:800;color:var(--gold);}
+.menu-item-note-tag{font-size:9px;color:var(--muted);margin-top:3px;opacity:.8;}
+.menu-cart-badge{position:absolute;top:7px;right:7px;background:#e67e22;color:#fff;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;box-shadow:0 2px 6px rgba(0,0,0,0.3);}
+
+.menu-editor-card{background:var(--card);border:1.5px solid var(--bdr);border-radius:14px;padding:14px;text-align:center;position:relative;transition:all .2s;}
+.menu-editor-card:hover{box-shadow:0 4px 16px rgba(0,0,0,0.2);}
+.menu-editor-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+.menu-editor-cat-stripe.cat-meat{background:linear-gradient(90deg,#c0392b,#e74c3c);}
+.menu-editor-cat-stripe.cat-chicken{background:linear-gradient(90deg,#e67e22,#f39c12);}
+.menu-editor-cat-stripe.cat-fish{background:linear-gradient(90deg,#2980b9,#3498db);}
+.menu-editor-cat-stripe.cat-drinks{background:linear-gradient(90deg,#16a085,#1abc9c);}
+.menu-editor-cat-stripe.cat-sweets{background:linear-gradient(90deg,#8e44ad,#9b59b6);}
+.menu-editor-cat-stripe.cat-snacks{background:linear-gradient(90deg,#27ae60,#2ecc71);}
+.menu-editor-cat-stripe.cat-shisha{background:linear-gradient(90deg,#5d3a8e,#8e44ad);}
+.menu-editor-cat-stripe.cat-other{background:linear-gradient(90deg,#7f8c8d,#95a5a6);}
+
+.rest-stats-bar{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;margin-bottom:16px;}
+.rest-stat-mini{background:var(--card);border:1px solid var(--bdr);border-radius:10px;padding:12px 14px;display:flex;align-items:center;gap:10px;}
+.rest-stat-mini-icon{font-size:22px;}
+.rest-stat-mini-val{font-size:16px;font-weight:800;color:var(--gold);}
+.rest-stat-mini-lbl{font-size:9px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-top:1px;}
+
+@media(max-width:768px){
+  .menu-cat-tab{padding:7px 10px;min-width:58px;font-size:10px;}
+  .menu-cat-tab .cat-emoji{font-size:18px;}
+  .menu-item-emoji-wrap{font-size:28px;}
+}
 /* expense bar chart */
 .ebar{display:flex;align-items:center;gap:10px;margin-bottom:9px}
 .ebar-lbl{width:110px;font-size:11px;color:var(--text);white-space:nowrap}
@@ -687,6 +752,7 @@ select option{background:#1a1a2e;color:var(--text)}
     <div class="bn-more-item" onclick="bnGo('housekeeping',null);closeBnMore()"><span class="bm-icon">🧹</span><span class="t" data-ar="تنظيف" data-en="HK">تنظيف</span></div>
     <div class="bn-more-item" onclick="bnGo('guestsreg',null);closeBnMore()"><span class="bm-icon">📋</span><span class="t" data-ar="سجل الضيوف" data-en="Guests Reg.">سجل الضيوف</span></div>
     <div class="bn-more-item" onclick="bnGo('restaurant',null);closeBnMore()"><span class="bm-icon">🍽️</span><span class="t" data-ar="مطعم" data-en="Rest.">مطعم</span></div>
+    <div class="bn-more-item" onclick="bnGo('tours',null);closeBnMore()"><span class="bm-icon">🏔️</span><span class="t" data-ar="رحلات" data-en="Tours">رحلات</span></div>
     <div class="bn-more-item" onclick="bnGo('reviews',null);closeBnMore()"><span class="bm-icon">⭐</span><span class="t" data-ar="تقييمات" data-en="Reviews">تقييمات</span></div>
     <div class="bn-more-item" onclick="bnGo('settings',null);closeBnMore()"><span class="bm-icon">⚙️</span><span class="t" data-ar="إعدادات" data-en="Settings">إعدادات</span></div>
     <div class="bn-more-item" onclick="openAIChat();closeBnMore()"><span class="bm-icon">🤖</span><span>AI Chat</span></div>
@@ -1924,144 +1990,313 @@ style="width:100%;padding:9px 10px;border-radius:8px;border:2px solid rgba(155,8
 </div>
 </div>
 </div>
-<div id="page-restaurant" class="page">
-<div class="flex" style="margin-bottom:12px;">
-<h2 style="color:var(--gold);font-size:18px;">🍽️ المطعم</h2>
-<button class="btn bg" onclick="openRestM()" id="rest-add-btn">+ إضافة معاملة</button>
+<!-- ═══════ TOURS PAGE ═══════ -->
+<div id="page-tours" class="page">
+<div class="flex" style="margin-bottom:14px;flex-wrap:wrap;gap:8px;">
+  <h2 style="color:var(--gold);font-size:18px;margin:0;">🏔️ <span class="t" data-ar="إدارة الرحلات" data-en="Tours Management">إدارة الرحلات</span></h2>
+  <button class="btn bg bsm" onclick="openTourModal()">+ <span class="t" data-ar="رحلة جديدة" data-en="New Tour">رحلة جديدة</span></button>
 </div>
-<!-- Main Tabs -->
-<div class="rest-tab" id="rest-main-tabs">
-<button id="rtab-ledger" class="act" onclick="switchRestView('ledger',this)">📋 السجل</button>
-<button id="rtab-pos" onclick="switchRestView('pos',this)" style="background:rgba(230,126,34,0.12);color:#e67e22;border-color:rgba(230,126,34,0.4);font-weight:700;">🧾 POS — طلبات</button>
-<button id="rtab-menu" onclick="switchRestView('menu',this)" style="background:rgba(52,152,219,0.12);color:#7ab8f5;border-color:rgba(52,152,219,0.4);">🍴 قائمة الطعام</button>
+<!-- Summary Strip -->
+<div id="tours-summary-strip" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;margin-bottom:14px;"></div>
+<!-- Filter Bar -->
+<div class="card" style="padding:8px 12px;margin-bottom:10px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+  <select id="tour-filter-month" onchange="renderTours()" style="flex:1;min-width:100px;padding:5px 8px;border-radius:6px;background:var(--card);color:var(--fg);border:1px solid var(--bdr);font-family:Arial,sans-serif;font-size:12px;">
+    <option value="">📅 كل الشهور</option>
+  </select>
+  <select id="tour-filter-pay" onchange="renderTours()" style="flex:1;min-width:110px;padding:5px 8px;border-radius:6px;background:var(--card);color:var(--fg);border:1px solid var(--bdr);font-family:Arial,sans-serif;font-size:12px;">
+    <option value="">💳 كل أنواع الدفع</option>
+    <option value="cash">💵 كاش</option>
+    <option value="room">🏨 على الغرفة</option>
+  </select>
+  <button class="btn bb bsm" onclick="clearTourFilters()">✕ مسح</button>
+</div>
+<!-- Tours Table -->
+<div class="card" style="padding:0;overflow:hidden;">
+  <table style="width:100%;border-collapse:collapse;font-size:12px;">
+    <thead>
+      <tr style="background:rgba(201,168,76,0.1);color:var(--gold);">
+        <th style="padding:8px 10px;text-align:right;font-size:10px;letter-spacing:1px;">الرحلة</th>
+        <th style="padding:8px 10px;text-align:right;font-size:10px;letter-spacing:1px;">الضيف / المرشد</th>
+        <th style="padding:8px 10px;text-align:right;font-size:10px;letter-spacing:1px;">التاريخ</th>
+        <th style="padding:8px 10px;text-align:right;font-size:10px;letter-spacing:1px;">سعر الفرد</th>
+        <th style="padding:8px 10px;text-align:right;font-size:10px;letter-spacing:1px;">الإجمالي</th>
+        <th style="padding:8px 10px;text-align:right;font-size:10px;letter-spacing:1px;">الدفع</th>
+        <th style="padding:8px 4px;text-align:center;font-size:10px;">⚙️</th>
+      </tr>
+    </thead>
+    <tbody id="tours-tbody">
+      <tr><td colspan="6"><div class="empty">لا توجد رحلات. أضف رحلة جديدة.</div></td></tr>
+    </tbody>
+  </table>
+</div>
+</div>
+
+<!-- ═══════ TOUR MODAL ═══════ -->
+<div class="modal" id="tour-modal">
+<div class="modal-box" style="max-width:480px;">
+  <div class="mtitle">🏔️ <span id="tour-modal-title">إضافة رحلة جديدة</span></div>
+
+  <div class="g2">
+    <div class="fld s2">
+      <label>🏔️ اسم الرحلة / Tour Name</label>
+      <input id="tm-name" placeholder="مثال: رحلة سانت كاترين، سفاري، غطس...">
+    </div>
+    <div class="fld">
+      <label>📅 تاريخ الرحلة</label>
+      <input id="tm-date" type="date">
+    </div>
+    <div class="fld">
+      <label>👥 عدد الأشخاص</label>
+      <input id="tm-persons" type="number" min="1" value="1" placeholder="1" oninput="calcTourTotal()">
+    </div>
+    <div class="fld s2">
+      <label>🧭 مرشد السياحة / Tour Guide</label>
+      <input id="tm-guide" placeholder="اسم المرشد السياحي">
+    </div>
+    <div class="fld">
+      <label>👤 اسم الضيف</label>
+      <input id="tm-guest" placeholder="اسم الضيف" oninput="tourGuestSearch(this.value)">
+      <div id="tm-guest-suggest" style="display:none;position:absolute;z-index:999;background:var(--card);border:1px solid var(--bdr);border-radius:6px;margin-top:2px;max-height:140px;overflow-y:auto;width:100%;box-shadow:0 4px 12px rgba(0,0,0,0.4);"></div>
+    </div>
+    <div class="fld">
+      <label>🚪 رقم الغرفة</label>
+      <select id="tm-room">
+        <option value="">-- اختر الغرفة (اختياري) --</option>
+      </select>
+    </div>
+    <div class="fld">
+      <label>💰 سعر الفرد (EGP)</label>
+      <input id="tm-price-pp" type="number" min="0" step="0.01" value="0" placeholder="0" oninput="calcTourTotal()">
+    </div>
+    <div class="fld">
+      <label>💵 الإجمالي (EGP)</label>
+      <input id="tm-price" type="number" min="0" step="0.01" value="0" placeholder="0" oninput="calcTourPP()" style="font-weight:700;color:var(--gold);">
+    </div>
+    <div class="fld">
+      <label>💳 طريقة الدفع</label>
+      <select id="tm-pay-method" onchange="onTourPayChange()">
+        <option value="cash">💵 كاش — فاتورة مستقلة</option>
+        <option value="room">🏨 على الغرفة — يضاف لفاتورة الغرفة</option>
+      </select>
+    </div>
+    <div class="fld">
+      <label>📊 حالة الدفع</label>
+      <select id="tm-pay-status" onchange="calcTourPaidFields()">
+        <option value="pending">🔴 Pending — لم يُدفع</option>
+        <option value="partial">🟡 Partial — دفع جزئي</option>
+        <option value="paid">🟢 Paid — مدفوع بالكامل</option>
+      </select>
+    </div>
+    <div class="fld" id="tm-paid-wrap" style="display:none;">
+      <label>✅ المبلغ المدفوع (EGP)</label>
+      <input id="tm-paid-amount" type="number" min="0" step="0.01" value="0" placeholder="0" oninput="calcTourPaidFields()">
+    </div>
+    <div class="fld" id="tm-remaining-wrap" style="display:none;">
+      <label>⏳ المتبقي (EGP)</label>
+      <input id="tm-remaining" type="number" min="0" readonly style="opacity:0.6;background:rgba(231,76,60,0.07);color:#e74c3c;font-weight:700;">
+    </div>
+    <div class="fld s2" id="tm-room-charge-info" style="display:none;">
+      <div style="background:rgba(52,152,219,0.1);border:1px solid rgba(52,152,219,0.3);border-radius:8px;padding:8px 12px;font-size:11px;color:#7ab8f5;">
+        ℹ️ سيتم إضافة هذه الرحلة تلقائياً لفاتورة الغرفة المختارة كـ "Room Charge" وستظهر تفاصيلها في الفاتورة النهائية.
+      </div>
+    </div>
+    <div class="fld s2">
+      <label>📝 ملاحظات</label>
+      <textarea id="tm-notes" rows="2" placeholder="أي تفاصيل إضافية..."></textarea>
+    </div>
+  </div>
+
+  <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;">
+    <button class="btn bg" style="flex:1;" onclick="saveTour()">💾 حفظ الرحلة</button>
+    <button class="btn bb" onclick="closeTourModal()">إلغاء</button>
+  </div>
+  <button id="tm-delete-btn" class="btn" style="display:none;background:rgba(231,76,60,0.15);color:#e74c3c;border:1px solid rgba(231,76,60,0.3);width:100%;margin-top:6px;" onclick="deleteTour()">🗑 حذف الرحلة</button>
+</div>
+</div>
+
+<!-- ═══════ TOUR INVOICE MODAL (كاش) ═══════ -->
+<div class="modal" id="tour-inv-modal">
+<div class="modal-box" style="max-width:480px;">
+  <div class="mtitle">📄 فاتورة رحلة</div>
+  <div id="tour-inv-preview" class="invp" style="margin-bottom:12px;"></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+    <button class="btn bg" onclick="printTourInvoice()">🖨️ طباعة / PDF</button>
+    <button class="btn" style="background:#25D366;color:#fff;" onclick="waTourInvoice()">📱 WhatsApp</button>
+    <button class="btn bb" onclick="closeM('tour-inv-modal')">إغلاق</button>
+  </div>
+</div>
+</div>
+
+<div id="page-restaurant" class="page">
+
+<!-- ══ HEADER ══ -->
+<div class="flex" style="margin-bottom:14px;flex-wrap:wrap;gap:8px;">
+  <h2 style="color:var(--gold);font-size:18px;font-weight:800;">🍽️ المطعم</h2>
+  <div style="margin-right:auto;display:flex;gap:6px;flex-wrap:wrap;">
+    <button class="btn bg" onclick="openRestM()" id="rest-add-btn">+ معاملة</button>
+    <button class="btn" style="background:rgba(52,152,219,0.15);color:#7ab8f5;border:1px solid rgba(52,152,219,0.4);" onclick="switchRestView('pos', document.getElementById('rtab-pos'))">🧾 POS</button>
+    <button class="btn" style="background:rgba(37,211,102,0.12);color:#4cda7a;border:1px solid rgba(37,211,102,0.35);" onclick="switchRestView('menu', document.getElementById('rtab-menu'))">🍴 تعديل المنيو</button>
+  </div>
+</div>
+
+<!-- ══ MAIN TABS ══ -->
+<div class="rest-tab" id="rest-main-tabs" style="margin-bottom:16px;">
+  <button id="rtab-ledger" class="act" onclick="switchRestView('ledger',this)">📋 السجل</button>
+  <button id="rtab-menu-browse" onclick="switchRestView('menu-browse',this)" style="background:rgba(201,168,76,0.12);color:var(--gold);border-color:rgba(201,168,76,0.4);">🗂️ تصفح المنيو</button>
+  <button id="rtab-pos" onclick="switchRestView('pos',this)" style="background:rgba(230,126,34,0.12);color:#e67e22;border-color:rgba(230,126,34,0.4);font-weight:700;">🧾 POS — طلبات</button>
+  <button id="rtab-menu" onclick="switchRestView('menu',this)" style="background:rgba(52,152,219,0.12);color:#7ab8f5;border-color:rgba(52,152,219,0.4);">🍴 إدارة القائمة</button>
 </div>
 
 <!-- ══ LEDGER VIEW ══ -->
 <div id="rest-view-ledger">
-<div class="rest-tab">
-<button id="rtab-all" class="act" onclick="filterRest('all',this)">📋 الكل</button>
-<button id="rtab-income" onclick="filterRest('income',this)">🟢 دخول</button>
-<button id="rtab-expense" onclick="filterRest('expense',this)">🔴 خروج</button>
-<button id="rtab-pos-orders" onclick="filterRest('pos',this)">🧾 طلبات POS</button>
+  <div class="rest-tab">
+    <button id="rtab-all" class="act" onclick="filterRest('all',this)">📋 الكل</button>
+    <button id="rtab-income" onclick="filterRest('income',this)">🟢 دخول</button>
+    <button id="rtab-expense" onclick="filterRest('expense',this)">🔴 خروج</button>
+    <button id="rtab-pos-orders" onclick="filterRest('pos',this)">🧾 طلبات POS</button>
+  </div>
+  <div class="g3" id="rest-stats" style="margin-bottom:12px;"></div>
+  <div class="card tbl-wrap" style="padding:0;overflow:hidden;">
+    <table class="tbl">
+      <thead><tr>
+        <th>التاريخ</th><th>النوع</th><th>الوصف</th>
+        <th>EGP</th><th>USD</th><th>EUR</th>
+        <th>طريقة الدفع</th><th>ملاحظات</th><th>إجراءات</th>
+      </tr></thead>
+      <tbody id="rest-body"></tbody>
+    </table>
+  </div>
 </div>
-<div class="g3" id="rest-stats" style="margin-bottom:12px;"></div>
-<div class="card tbl-wrap" style="padding:0;overflow:hidden;">
-<table class="tbl">
-<thead><tr>
-<th>التاريخ</th><th>النوع</th><th>الوصف</th>
-<th>EGP</th><th>USD</th><th>EUR</th>
-<th>طريقة الدفع</th><th>ملاحظات</th><th>إجراءات</th>
-</tr></thead>
-<tbody id="rest-body"></tbody>
-</table>
-</div>
+
+<!-- ══ MENU BROWSE VIEW (NEW!) ══ -->
+<div id="rest-view-menu-browse" style="display:none;">
+  <!-- Stats Bar -->
+  <div class="rest-stats-bar" id="menu-browse-stats" style="margin-bottom:16px;"></div>
+  <!-- Category Tabs -->
+  <div class="menu-cat-tabs" id="menu-cat-tabs"></div>
+  <!-- Menu Items Grid -->
+  <div id="menu-browse-content"></div>
 </div>
 
 <!-- ══ POS VIEW ══ -->
 <div id="rest-view-pos" style="display:none;">
-<div class="g2" style="gap:14px;align-items:flex-start;">
-  <!-- Left: Menu Grid -->
-  <div>
-    <div class="card" style="margin-bottom:10px;padding:10px 14px;">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
-        <span style="color:var(--gold);font-size:11px;font-weight:700;letter-spacing:2px;">🍴 اختر الأصناف</span>
-        <select id="pos-cat-filter" onchange="renderPOSMenu()" style="width:auto;padding:4px 8px;font-size:12px;">
-          <option value="">كل الأصناف</option>
-        </select>
+  <div class="g2" style="gap:14px;align-items:flex-start;">
+    <!-- Left: Menu Grid with Category Tabs -->
+    <div>
+      <div class="card" style="margin-bottom:10px;padding:12px 14px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+          <span style="color:var(--gold);font-size:11px;font-weight:700;letter-spacing:2px;">🍴 اختر الأصناف</span>
+          <select id="pos-cat-filter" onchange="renderPOSMenu()" style="width:auto;padding:4px 8px;font-size:12px;">
+            <option value="">كل الأصناف</option>
+          </select>
+        </div>
+        <!-- POS Category Quick Buttons -->
+        <div id="pos-cat-quick" style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px;"></div>
+        <div id="pos-menu-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px;max-height:400px;overflow-y:auto;"></div>
       </div>
-      <div id="pos-menu-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px;max-height:420px;overflow-y:auto;"></div>
+    </div>
+    <!-- Right: Cart -->
+    <div>
+      <div class="card" style="margin-bottom:10px;">
+        <div class="ctitle">🧾 الطلب الحالي</div>
+        <div class="fld" style="margin-bottom:10px;">
+          <label>🏨 ربط بغرفة (اختياري)</label>
+          <select id="pos-room-select" style="padding:6px 8px;font-size:12px;">
+            <option value="">— بدون غرفة —</option>
+          </select>
+        </div>
+        <div class="fld" style="margin-bottom:10px;">
+          <label>👤 اسم الزبون (اختياري)</label>
+          <input id="pos-customer" placeholder="مثال: طاولة 3 / Ahmed..." style="padding:6px 8px;font-size:12px;">
+        </div>
+        <div id="pos-cart" style="min-height:80px;margin-bottom:10px;"></div>
+        <div id="pos-total-area" style="background:rgba(201,168,76,0.08);border:1px solid var(--bdr);border-radius:8px;padding:10px 12px;margin-bottom:10px;font-size:12px;display:none;">
+          <div style="display:flex;justify-content:space-between;margin-bottom:4px;"><span style="color:var(--muted);">المجموع الجزئي:</span><span id="pos-subtotal" style="color:var(--text);font-weight:700;"></span></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+            <span style="color:var(--muted);">خصم %:</span>
+            <input id="pos-discount" type="number" min="0" max="100" value="0" oninput="calcPOSTotal()" style="width:60px;padding:3px 6px;font-size:12px;text-align:center;">
+          </div>
+          <div style="display:flex;justify-content:space-between;border-top:1px solid var(--bdr);padding-top:7px;margin-top:4px;">
+            <span style="color:var(--gold);font-weight:700;font-size:14px;">الإجمالي:</span>
+            <span id="pos-total" style="color:var(--gold);font-weight:700;font-size:16px;"></span>
+          </div>
+        </div>
+        <div class="fld" style="margin-bottom:10px;">
+          <label>💳 طريقة الدفع</label>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;">
+            <button type="button" id="pos-pay-cash" onclick="setPOSPayMethod('cash')" style="flex:1;padding:8px 4px;border-radius:7px;border:2px solid rgba(37,211,102,0.5);background:rgba(37,211,102,0.15);color:#4cda7a;font-size:12px;font-weight:700;cursor:pointer;font-family:Arial,sans-serif;">💵 كاش</button>
+            <button type="button" id="pos-pay-card" onclick="setPOSPayMethod('card')" style="flex:1;padding:8px 4px;border-radius:7px;border:2px solid rgba(74,144,217,0.3);background:transparent;color:#7ab8f5;font-size:12px;font-weight:700;cursor:pointer;font-family:Arial,sans-serif;">💳 بطاقة</button>
+            <button type="button" id="pos-pay-room" onclick="setPOSPayMethod('room')" style="flex:1;padding:8px 4px;border-radius:7px;border:2px solid rgba(201,168,76,0.3);background:transparent;color:var(--gold);font-size:12px;font-weight:700;cursor:pointer;font-family:Arial,sans-serif;">🏨 غرفة</button>
+          </div>
+        </div>
+        <div class="fld" style="margin-bottom:12px;">
+          <label>📝 ملاحظات الطلب</label>
+          <input id="pos-notes" placeholder="مثال: بدون بصل، سكر خفيف..." style="padding:6px 8px;font-size:12px;">
+        </div>
+        <div style="display:flex;gap:7px;">
+          <button class="btn" style="background:#e74c3c;color:#fff;flex:1;" onclick="clearPOSCart()">🗑 مسح</button>
+          <button class="btn" style="background:#e67e22;color:#fff;flex:2;font-size:14px;font-weight:700;" onclick="submitPOSOrder()">✅ تأكيد الطلب</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="ctitle">📋 طلبات اليوم</div>
+        <div id="pos-today-orders"></div>
+      </div>
     </div>
   </div>
-  <!-- Right: Cart -->
-  <div>
-    <div class="card" style="margin-bottom:10px;">
-      <div class="ctitle">🧾 الطلب الحالي</div>
-      <!-- Room Link -->
-      <div class="fld" style="margin-bottom:10px;">
-        <label>🏨 ربط بغرفة (اختياري)</label>
-        <select id="pos-room-select" style="padding:6px 8px;font-size:12px;">
-          <option value="">— بدون غرفة —</option>
-        </select>
-      </div>
-      <!-- Customer name -->
-      <div class="fld" style="margin-bottom:10px;">
-        <label>👤 اسم الزبون (اختياري)</label>
-        <input id="pos-customer" placeholder="مثال: طاولة 3 / Ahmed..." style="padding:6px 8px;font-size:12px;">
-      </div>
-      <!-- Cart Items -->
-      <div id="pos-cart" style="min-height:80px;margin-bottom:10px;"></div>
-      <!-- Totals -->
-      <div id="pos-total-area" style="background:rgba(201,168,76,0.08);border:1px solid var(--bdr);border-radius:8px;padding:10px 12px;margin-bottom:10px;font-size:12px;display:none;">
-        <div style="display:flex;justify-content:space-between;margin-bottom:4px;"><span style="color:var(--muted);">المجموع الجزئي:</span><span id="pos-subtotal" style="color:var(--text);font-weight:700;"></span></div>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
-          <span style="color:var(--muted);">خصم %:</span>
-          <input id="pos-discount" type="number" min="0" max="100" value="0" oninput="calcPOSTotal()" style="width:60px;padding:3px 6px;font-size:12px;text-align:center;">
-        </div>
-        <div style="display:flex;justify-content:space-between;border-top:1px solid var(--bdr);padding-top:7px;margin-top:4px;">
-          <span style="color:var(--gold);font-weight:700;font-size:14px;">الإجمالي:</span>
-          <span id="pos-total" style="color:var(--gold);font-weight:700;font-size:16px;"></span>
-        </div>
-      </div>
-      <!-- Payment -->
-      <div class="fld" style="margin-bottom:10px;">
-        <label>💳 طريقة الدفع</label>
-        <div style="display:flex;gap:6px;flex-wrap:wrap;">
-          <button type="button" id="pos-pay-cash" onclick="setPOSPayMethod('cash')" style="flex:1;padding:8px 4px;border-radius:7px;border:2px solid rgba(37,211,102,0.5);background:rgba(37,211,102,0.15);color:#4cda7a;font-size:12px;font-weight:700;cursor:pointer;font-family:Arial,sans-serif;">💵 كاش</button>
-          <button type="button" id="pos-pay-card" onclick="setPOSPayMethod('card')" style="flex:1;padding:8px 4px;border-radius:7px;border:2px solid rgba(74,144,217,0.3);background:transparent;color:#7ab8f5;font-size:12px;font-weight:700;cursor:pointer;font-family:Arial,sans-serif;">💳 بطاقة</button>
-          <button type="button" id="pos-pay-room" onclick="setPOSPayMethod('room')" style="flex:1;padding:8px 4px;border-radius:7px;border:2px solid rgba(201,168,76,0.3);background:transparent;color:var(--gold);font-size:12px;font-weight:700;cursor:pointer;font-family:Arial,sans-serif;">🏨 غرفة</button>
-        </div>
-      </div>
-      <!-- Notes -->
-      <div class="fld" style="margin-bottom:12px;">
-        <label>📝 ملاحظات الطلب</label>
-        <input id="pos-notes" placeholder="مثال: بدون بصل، سكر خفيف..." style="padding:6px 8px;font-size:12px;">
-      </div>
-      <div style="display:flex;gap:7px;">
-        <button class="btn" style="background:#e74c3c;color:#fff;flex:1;" onclick="clearPOSCart()">🗑 مسح</button>
-        <button class="btn" style="background:#e67e22;color:#fff;flex:2;font-size:14px;font-weight:700;" onclick="submitPOSOrder()">✅ تأكيد الطلب</button>
-      </div>
-    </div>
-    <!-- Today's POS Orders -->
-    <div class="card">
-      <div class="ctitle">📋 طلبات اليوم</div>
-      <div id="pos-today-orders"></div>
-    </div>
-  </div>
-</div>
 </div>
 
 <!-- ══ MENU EDITOR VIEW ══ -->
 <div id="rest-view-menu" style="display:none;">
-  <div class="flex" style="margin-bottom:12px;">
+  <div class="flex" style="margin-bottom:12px;flex-wrap:wrap;gap:8px;">
     <button class="btn bg" onclick="openMenuItemM()">+ إضافة صنف</button>
-    <span style="font-size:11px;color:var(--muted);margin-right:auto;">أضف أصناف قائمتك — ستظهر في شاشة POS</span>
+    <!-- Category filter for editor -->
+    <select id="menu-editor-cat-filter" onchange="renderMenuEditor()" style="width:auto;padding:6px 10px;font-size:12px;">
+      <option value="">كل الفئات</option>
+    </select>
+    <span style="font-size:11px;color:var(--muted);margin-right:auto;">أضف أصناف قائمتك — ستظهر في شاشة POS وتصفح المنيو</span>
   </div>
-  <div id="menu-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;"></div>
+  <!-- Category Stats in Editor -->
+  <div id="menu-editor-cat-stats" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;"></div>
+  <div id="menu-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px;"></div>
   <div id="menu-empty" class="empty" style="display:none;">لا توجد أصناف بعد — اضغط + إضافة صنف</div>
 </div>
+
 </div>
 
 <!-- ══ MENU ITEM MODAL ══ -->
 <div class="ovl" id="menu-item-modal">
-<div class="mdl" style="max-width:420px;">
+<div class="mdl" style="max-width:460px;">
   <div class="flex" style="justify-content:space-between;margin-bottom:14px;">
     <div class="mtitle" id="menu-item-title" style="margin-bottom:0;">🍴 إضافة صنف</div>
     <button onclick="closeM('menu-item-modal')" style="background:none;border:none;color:var(--gold);font-size:18px;cursor:pointer;">✕</button>
   </div>
-  <div class="g2">
-    <div class="fld s2"><label>اسم الصنف *</label><input id="mi-name" placeholder="مثال: شيشة، عصير مانجو، بيتزا..."></div>
-    <div class="fld"><label>الفئة</label>
-      <select id="mi-cat">
-        <option>مشروبات 🥤</option><option>أكل 🍽️</option><option>شيشة 💨</option>
-        <option>حلويات 🍰</option><option>وجبات خفيفة 🥪</option><option>أخرى 📌</option>
-      </select>
+
+  <!-- Category Quick Picker -->
+  <div style="margin-bottom:14px;">
+    <label style="font-size:11px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;display:block;margin-bottom:8px;">الفئة *</label>
+    <div id="mi-cat-picker" style="display:flex;gap:7px;flex-wrap:wrap;">
+      <button type="button" onclick="selectMenuCat(this,'لحوم 🥩')" data-cat="لحوم 🥩" class="mi-cat-btn" style="padding:7px 12px;border-radius:8px;border:1.5px solid rgba(231,76,60,0.4);background:rgba(231,76,60,0.08);color:#e74c3c;cursor:pointer;font-size:12px;font-family:Arial,sans-serif;font-weight:700;transition:all .15s;">🥩 لحوم</button>
+      <button type="button" onclick="selectMenuCat(this,'فراخ 🍗')" data-cat="فراخ 🍗" class="mi-cat-btn" style="padding:7px 12px;border-radius:8px;border:1.5px solid rgba(230,126,34,0.4);background:rgba(230,126,34,0.08);color:#e67e22;cursor:pointer;font-size:12px;font-family:Arial,sans-serif;font-weight:700;transition:all .15s;">🍗 فراخ</button>
+      <button type="button" onclick="selectMenuCat(this,'أسماك 🐟')" data-cat="أسماك 🐟" class="mi-cat-btn" style="padding:7px 12px;border-radius:8px;border:1.5px solid rgba(52,152,219,0.4);background:rgba(52,152,219,0.08);color:#3498db;cursor:pointer;font-size:12px;font-family:Arial,sans-serif;font-weight:700;transition:all .15s;">🐟 أسماك</button>
+      <button type="button" onclick="selectMenuCat(this,'مشروبات 🥤')" data-cat="مشروبات 🥤" class="mi-cat-btn" style="padding:7px 12px;border-radius:8px;border:1.5px solid rgba(26,188,156,0.4);background:rgba(26,188,156,0.08);color:#1abc9c;cursor:pointer;font-size:12px;font-family:Arial,sans-serif;font-weight:700;transition:all .15s;">🥤 مشروبات</button>
+      <button type="button" onclick="selectMenuCat(this,'حلويات 🍰')" data-cat="حلويات 🍰" class="mi-cat-btn" style="padding:7px 12px;border-radius:8px;border:1.5px solid rgba(155,89,182,0.4);background:rgba(155,89,182,0.08);color:#9b59b6;cursor:pointer;font-size:12px;font-family:Arial,sans-serif;font-weight:700;transition:all .15s;">🍰 حلويات</button>
+      <button type="button" onclick="selectMenuCat(this,'وجبات خفيفة 🥪')" data-cat="وجبات خفيفة 🥪" class="mi-cat-btn" style="padding:7px 12px;border-radius:8px;border:1.5px solid rgba(39,174,96,0.4);background:rgba(39,174,96,0.08);color:#27ae60;cursor:pointer;font-size:12px;font-family:Arial,sans-serif;font-weight:700;transition:all .15s;">🥪 وجبات خفيفة</button>
+      <button type="button" onclick="selectMenuCat(this,'شيشة 💨')" data-cat="شيشة 💨" class="mi-cat-btn" style="padding:7px 12px;border-radius:8px;border:1.5px solid rgba(142,68,173,0.4);background:rgba(142,68,173,0.08);color:#8e44ad;cursor:pointer;font-size:12px;font-family:Arial,sans-serif;font-weight:700;transition:all .15s;">💨 شيشة</button>
+      <button type="button" onclick="selectMenuCat(this,'أكل 🍽️')" data-cat="أكل 🍽️" class="mi-cat-btn" style="padding:7px 12px;border-radius:8px;border:1.5px solid rgba(201,168,76,0.4);background:rgba(201,168,76,0.08);color:var(--gold);cursor:pointer;font-size:12px;font-family:Arial,sans-serif;font-weight:700;transition:all .15s;">🍽️ أكل عام</button>
+      <button type="button" onclick="selectMenuCat(this,'أخرى 📌')" data-cat="أخرى 📌" class="mi-cat-btn" style="padding:7px 12px;border-radius:8px;border:1.5px solid rgba(127,140,141,0.4);background:rgba(127,140,141,0.08);color:#95a5a6;cursor:pointer;font-size:12px;font-family:Arial,sans-serif;font-weight:700;transition:all .15s;">📌 أخرى</button>
     </div>
+    <input type="hidden" id="mi-cat" value="أكل 🍽️">
+  </div>
+
+  <div class="g2">
+    <div class="fld s2"><label>اسم الصنف *</label><input id="mi-name" placeholder="مثال: كباب، عصير مانجو، بيتزا..."></div>
     <div class="fld"><label>السعر (EGP) *</label><input id="mi-price" type="number" min="0" step="0.5" placeholder="0"></div>
     <div class="fld"><label>رمز / إيموجي</label><input id="mi-emoji" placeholder="🍕" maxlength="4" style="font-size:20px;text-align:center;"></div>
-    <div class="fld s2"><label>ملاحظة (اختياري)</label><input id="mi-note" placeholder="مثال: متاح فقط الليل..."></div>
+    <div class="fld s2"><label>ملاحظة (اختياري)</label><input id="mi-note" placeholder="مثال: متاح فقط الليل، حار جداً..."></div>
   </div>
   <div class="flex mt">
-    <button class="btn bg" onclick="saveMenuItem()" style="flex:2;">💾 حفظ</button>
+    <button class="btn bg" onclick="saveMenuItem()" style="flex:2;">💾 حفظ الصنف</button>
     <button class="btn bb" onclick="closeM('menu-item-modal')" style="flex:1;">إلغاء</button>
   </div>
 </div>
@@ -2079,10 +2314,11 @@ style="width:100%;padding:9px 10px;border-radius:8px;border:2px solid rgba(155,8
     <div style="color:var(--gold);font-size:12px;font-weight:700;">🏨 تم الإضافة على حساب الغرفة</div>
     <div style="margin-top:4px;"><span style="background:#fff3cd;color:#856404;border-radius:12px;padding:2px 10px;font-size:10px;font-weight:700;">⏳ Pending — سيُحسم عند الدفع النهائي</span></div>
   </div>
-  <div class="flex mt">
-    <button class="btn bgr" onclick="sendPOSReceiptWA()" style="flex:1;">💬 واتساب</button>
-    <button class="btn bg" onclick="printPOSReceipt()" style="flex:1;">🖨️ طباعة</button>
-    <button class="btn bb" onclick="closeM('pos-receipt-modal')" style="flex:1;">إغلاق</button>
+  <div class="flex mt" style="flex-wrap:wrap;gap:6px;">
+    <button class="btn bgr" onclick="sendPOSReceiptWA()" style="flex:1;min-width:80px;">💬 واتساب</button>
+    <button class="btn bg" onclick="printPOSReceipt()" style="flex:1;min-width:80px;">🖨️ طباعة</button>
+    <button class="btn" onclick="printRestaurantInvoice()" style="flex:1;min-width:80px;background:linear-gradient(135deg,#2471a3,#3498db);color:#fff;font-weight:700;border:none;">📄 فاتورة رسمية</button>
+    <button class="btn bb" onclick="closeM('pos-receipt-modal')" style="flex:1;min-width:80px;">إغلاق</button>
   </div>
 </div>
 </div>
@@ -3068,7 +3304,8 @@ let expenses   = LS("dta_ex",[]);
 let exRate     = parseFloat(localStorage.getItem("dta_rate")||"50");
 let eurRate    = parseFloat(localStorage.getItem("dta_eur_rate")||"55"); // 1 EUR = EGP
 let usdEurRate = parseFloat(localStorage.getItem("dta_usd_eur")||"0.93"); // 1 USD = EUR
-let bkEdit=null, rmEdit=null, exEdit=null, restEdit=null;
+let bkEdit=null, rmEdit=null, exEdit=null, restEdit=null, tourEdit=null;
+let tours = LS("dta_tours",[]);
 let restFilter="all";
 let restaurantTx=LS("dta_rest",[]);
 let invCur="USD", sCur="USD";
@@ -3095,7 +3332,9 @@ function undoLast(){
   expenses      = LS("dta_ex",[]);
   roomSt        = LS("dta_rs",{});
   restaurantTx  = LS("dta_rest",[]);
+  tours         = LS("dta_tours",[]);
   renderDashboard(); renderBookings(); renderRooms(); renderExpenses();
+  if(document.getElementById("page-tours")&&document.getElementById("page-tours").classList.contains("on")) renderTours();
   updateUndoBtn();
   sNotify("↩️ تراجع","تم التراجع عن: "+last.label,"success",3000);
 }
@@ -3171,7 +3410,7 @@ document.querySelectorAll(".page").forEach(p=>p.classList.remove("on"));
 document.querySelectorAll(".nb").forEach(b=>b.classList.remove("act"));
 document.getElementById("page-"+id).classList.add("on");
 if(btn) btn.classList.add("act");
-const map={dashboard:renderDashboard,bookings:renderBookings,rooms:renderRooms,expenses:renderExpenses,settings:renderSettings,restaurant:renderRestaurant,guestsreg:renderGuestsRegister,debt:renderDebt};
+const map={dashboard:renderDashboard,bookings:renderBookings,rooms:renderRooms,expenses:renderExpenses,settings:renderSettings,restaurant:renderRestaurant,guestsreg:renderGuestsRegister,debt:renderDebt,tours:renderTours};
 if(map[id]) map[id]();
 if(id==="invoice"){renderInvRooms();buildPreview();}
 }
@@ -3992,6 +4231,7 @@ return "<tr style='"+rowStyle+"'>"+
 "<td><span class='bdg "+bc+"'>"+b.status+"</span>"+
 (b.prepay>0?"<div style='font-size:10px;color:var(--muted);'>Pre: "+(b.cur==="USD"?"$":"£")+b.prepay+"</div>":"")+
 (b.roomCharges&&b.roomCharges.length?"<div style='margin-top:3px;background:rgba(230,126,34,0.12);border:1px solid rgba(230,126,34,0.35);border-radius:5px;padding:2px 6px;font-size:9px;color:#e67e22;font-weight:700;'>🍽️ £"+(b.roomCharges.reduce((s,r)=>s+(r.amount||0),0)).toFixed(0)+" مطعم"+(b.roomCharges.some(r=>(r.status||"pending")==="pending")?" ⏳":"")+"</div>":"")+
+(b.tourCharges&&b.tourCharges.length?"<div style='margin-top:3px;background:rgba(52,152,219,0.12);border:1px solid rgba(52,152,219,0.35);border-radius:5px;padding:2px 6px;font-size:9px;color:#7ab8f5;font-weight:700;'>🏔️ £"+(b.tourCharges.reduce((s,t)=>s+(t.price||0),0)).toLocaleString()+" رحلات"+(b.tourCharges.some(t=>(t.status||"pending")==="pending")?" ⏳":"")+"</div>":"")+
 "</td>"+
 "<td style='white-space:nowrap;min-width:110px;'>"+
 "<div style='display:flex;flex-wrap:wrap;gap:3px;'>"+
@@ -6927,6 +7167,26 @@ if(curBookingIdx >= 0 && bookings[curBookingIdx] && bookings[curBookingIdx].room
   }).join("") +
   "<tr style='background:#fff8e6;border-top:1px solid #f0c040;'><td colspan='3' style='font-size:9px;color:#856404;font-weight:700;'>🍽️ إجمالي مصروفات المطعم (Pending)</td><td><strong style='color:#856404;'>£"+rcTotal.toFixed(0)+"</strong></td></tr>";
 }
+// Build tour charges rows (room-billed tours)
+let tourChargesRows = "";
+let tourChargesTotal = 0;
+if(curBookingIdx >= 0 && bookings[curBookingIdx] && bookings[curBookingIdx].tourCharges && bookings[curBookingIdx].tourCharges.length) {
+  const tc = bookings[curBookingIdx].tourCharges;
+  tourChargesTotal = tc.reduce((s,t)=>s+(t.price||0),0);
+  tourChargesRows = tc.map((t,ti)=>{
+    const st = t.status||"pending";
+    const stColor = st==="paid" ? "background:#d4edda;color:#155724;" : "background:#e8f4fb;color:#1a6a9a;";
+    const stLabel = st==="paid" ? "✅ Paid" : "⏳ Pending";
+    return "<tr style='background:#eaf4fb;'><td>🏔️ <strong>"+t.tourName+"</strong> <span style='"+stColor+"padding:1px 6px;border-radius:10px;font-size:8px;font-weight:700;'>"+stLabel+"</span><br>"+
+      "<span style='color:#888;font-size:9px;'>📅 "+fmtD(t.date)+" · 👥 "+t.persons+" شخص"+(t.guide?" · 🧭 "+t.guide:"")+
+      (t.notes?"<br>📝 "+t.notes:"")+"</span></td>"+
+      "<td>"+t.persons+"</td>"+
+      "<td>£"+(t.price||0).toLocaleString()+"</td>"+
+      "<td style='white-space:nowrap;'><strong>£"+(t.price||0).toLocaleString()+"</strong> "+
+      "<button onclick='deleteTourCharge("+curBookingIdx+","+ti+")' style='background:#e74c3c;color:#fff;border:none;border-radius:4px;padding:1px 6px;cursor:pointer;font-size:10px;margin-left:4px;'>🗑</button></td></tr>";
+  }).join("") +
+  "<tr style='background:#d6eaf8;border-top:1px solid #7ab8f5;'><td colspan='3' style='font-size:9px;color:#1a6a9a;font-weight:700;'>🏔️ إجمالي الرحلات السياحية</td><td><strong style='color:#1a6a9a;'>£"+tourChargesTotal.toLocaleString()+"</strong></td></tr>";
+}
 // Build room rows
 const roomRows=d.lines.map(l=>{
 const ntsCol=l.isDU?"<span style='color:#e67e22;font-weight:700;'>DU</span>":l.isMonthly?"<span style='color:#9b59b6;font-weight:700;'>"+Math.round(l.months)+"mo</span>":""+l.n;
@@ -6992,7 +7252,7 @@ proformaBanner+
 })()+
 "<div class='invp-sec'>Stay Details</div>"+
 "<table class='invp-tbl'><thead><tr><th>Description</th><th>Qty</th><th>Rate</th><th>Total</th></tr></thead>"+
-"<tbody>"+roomRows+extRows+roomChargesRows+
+"<tbody>"+roomRows+extRows+roomChargesRows+tourChargesRows+
 (ivTransfer.has?"<tr style='background:#eaf4fb;'><td>✈️ Airport Transfer — <span style='font-size:9px;color:#2471a3;font-weight:700;'>"+ivTransfer.typeLabel+"</span>"+(ivTransfer.flight?"<br><span style='color:#888;font-size:9px;'>Flight: "+ivTransfer.flight+(ivTransfer.airline?" · "+ivTransfer.airline:"")+"</span>":"")+"</td><td>1</td><td>"+d.sym+ivTransfer.price.toFixed(2)+"</td><td><strong>"+d.sym+ivTransfer.price.toFixed(2)+"</strong></td></tr>":"")+
 "<tr><td colspan='3' style='color:#888;font-size:9px;'>Payment: "+d.method+"</td><td></td></tr></tbody></table>"+
 "<div style='display:flex;justify-content:flex-end;margin-bottom:11px;'>"+
@@ -7001,6 +7261,7 @@ proformaBanner+
 (ivTransfer.has?"<div class='invp-tr'><span>✈️ Airport Transfer</span><span>"+d.sym+ivTransfer.price.toFixed(2)+"</span></div>":"")+
 "<div class='invp-tr'><span>Tax (0%)</span><span>"+d.sym+"0.00</span></div>"+
 (roomChargesRows&&curBookingIdx>=0&&bookings[curBookingIdx]&&bookings[curBookingIdx].roomCharges&&bookings[curBookingIdx].roomCharges.length?"<div class='invp-tr' style='color:#856404;'><span>🍽️ Restaurant Charges (Pending)</span><span>£"+(bookings[curBookingIdx].roomCharges.reduce((s,r)=>s+(r.amount||0),0)).toFixed(0)+"</span></div>":"")+
+(tourChargesRows&&tourChargesTotal>0?"<div class='invp-tr' style='color:#1a6a9a;'><span>🏔️ Tour Charges</span><span>£"+tourChargesTotal.toLocaleString()+"</span></div>":"")+
 (d.prepay>0&&!isProforma?"<div class='invp-tr'><span>Prepayment</span><span>- "+d.sym+d.prepay.toFixed(2)+"</span></div>":"")+
 (isDepositPF
 ? "<div class='invp-tr'><span>Balance at Check-in</span><span>"+d.sym+(subtotal+ivTransfer.price-depAmtPF).toFixed(2)+"</span></div>"+
@@ -7261,6 +7522,20 @@ function deleteRoomCharge(bIdx, ri){
   buildPreview();
   renderBookings();
   sNotify("🗑️ تم الحذف","تم حذف مصروف المطعم من الفاتورة","success",2500);
+}
+function deleteTourCharge(bIdx, ti){
+  if(!confirm("🗑 حذف هذه الرحلة من فاتورة الغرفة؟")) return;
+  if(!bookings[bIdx]||!bookings[bIdx].tourCharges) return;
+  const removed = bookings[bIdx].tourCharges.splice(ti,1)[0];
+  // Also update the tour record to cash if tour still exists
+  if(removed && removed.tourId){
+    const ti2 = tours.findIndex(t=>t.id===removed.tourId);
+    if(ti2>=0){ tours[ti2].payMethod="cash"; sv("dta_tours",tours); }
+  }
+  sv("dta_bk",bookings);
+  buildPreview();
+  renderBookings();
+  sNotify("🗑️ تم الحذف","تمت إزالة الرحلة من فاتورة الغرفة","success",2500);
 }
 function toggleRCStatus(ri){
 if(payEdit===null) return;
@@ -8257,6 +8532,446 @@ const phone=document.getElementById("bm-phone").value.replace(/\D/g,"");
 const url=phone?"https://wa.me/"+phone+"?text="+encodeURIComponent(txt):"https://wa.me/?text="+encodeURIComponent(txt);
 window.open(url,"_blank");
 }
+// ═══════════ TOURS ═══════════
+function renderTours(){
+  tours = LS("dta_tours",[]);
+  const filterMonth = (document.getElementById("tour-filter-month")||{value:""}).value;
+  const filterPay   = (document.getElementById("tour-filter-pay")||{value:""}).value;
+
+  // Populate month filter
+  const monthSel = document.getElementById("tour-filter-month");
+  if(monthSel){
+    const months = [...new Set(tours.map(t=>t.date?t.date.substring(0,7):"").filter(Boolean))].sort().reverse();
+    const cur = monthSel.value;
+    monthSel.innerHTML = '<option value="">📅 كل الشهور</option>' +
+      months.map(m=>`<option value="${m}" ${m===cur?"selected":""}>${m}</option>`).join("");
+  }
+
+  let list = tours;
+  if(filterMonth) list = list.filter(t=>t.date&&t.date.startsWith(filterMonth));
+  if(filterPay)   list = list.filter(t=>t.payMethod===filterPay);
+
+  // Summary strip
+  const totalRevenue = tours.reduce((s,t)=>s+(t.price||0),0);
+  const cashRevenue  = tours.filter(t=>t.payMethod==="cash").reduce((s,t)=>s+(t.price||0),0);
+  const roomRevenue  = tours.filter(t=>t.payMethod==="room").reduce((s,t)=>s+(t.price||0),0);
+  const strip = document.getElementById("tours-summary-strip");
+  if(strip) strip.innerHTML = `
+    <div class="card" style="text-align:center;padding:10px;">
+      <div style="font-size:20px;font-weight:700;color:var(--gold);">${tours.length}</div>
+      <div style="font-size:9px;color:var(--muted);letter-spacing:1px;">إجمالي الرحلات</div>
+    </div>
+    <div class="card" style="text-align:center;padding:10px;">
+      <div style="font-size:16px;font-weight:700;color:#2ecc71;">£${totalRevenue.toLocaleString()}</div>
+      <div style="font-size:9px;color:var(--muted);letter-spacing:1px;">إجمالي الإيرادات</div>
+    </div>
+    <div class="card" style="text-align:center;padding:10px;">
+      <div style="font-size:16px;font-weight:700;color:#f5c518;">£${cashRevenue.toLocaleString()}</div>
+      <div style="font-size:9px;color:var(--muted);letter-spacing:1px;">💵 كاش</div>
+    </div>
+    <div class="card" style="text-align:center;padding:10px;">
+      <div style="font-size:16px;font-weight:700;color:#3498db;">£${roomRevenue.toLocaleString()}</div>
+      <div style="font-size:9px;color:var(--muted);letter-spacing:1px;">🏨 على الغرفة</div>
+    </div>`;
+
+  const tbody = document.getElementById("tours-tbody");
+  if(!tbody) return;
+  if(!list.length){
+    tbody.innerHTML = "<tr><td colspan='6'><div class='empty'>لا توجد رحلات.</div></td></tr>";
+    return;
+  }
+  tbody.innerHTML = list.slice().reverse().map((t,ri)=>{
+    const idx = tours.indexOf(t);
+    const payBadge = t.payMethod==="cash"
+      ? "<span style='background:rgba(245,197,24,0.15);color:#f5c518;border:1px solid rgba(245,197,24,0.3);padding:1px 6px;border-radius:10px;font-size:9px;font-weight:700;'>💵 كاش</span>"
+      : "<span style='background:rgba(52,152,219,0.15);color:#7ab8f5;border:1px solid rgba(52,152,219,0.3);padding:1px 6px;border-radius:10px;font-size:9px;font-weight:700;'>🏨 غرفة "+t.room+"</span>";
+    const statusBadge = t.payStatus==="paid"
+      ? "<span style='background:rgba(46,204,113,0.15);color:#2ecc71;border:1px solid rgba(46,204,113,0.3);padding:1px 6px;border-radius:10px;font-size:9px;font-weight:700;display:block;margin-top:3px;'>✅ Paid</span>"
+      : t.payStatus==="partial"
+      ? "<span style='background:rgba(241,196,15,0.15);color:#f1c40f;border:1px solid rgba(241,196,15,0.3);padding:1px 6px;border-radius:10px;font-size:9px;font-weight:700;display:block;margin-top:3px;'>🔶 Partial<br><span style='font-size:8px;font-weight:400;'>£"+(t.paidAmount||0).toLocaleString()+" / £"+(t.price||0).toLocaleString()+"</span></span>"
+      : "<span style='background:rgba(231,76,60,0.12);color:#e74c3c;border:1px solid rgba(231,76,60,0.3);padding:1px 6px;border-radius:10px;font-size:9px;font-weight:700;display:block;margin-top:3px;'>🔴 Pending</span>";
+    const ppLabel = t.pricePerPerson ? "£"+(t.pricePerPerson).toLocaleString() : (t.persons>0?"£"+Math.round((t.price||0)/(t.persons||1)).toLocaleString():"—");
+    return `<tr style="border-bottom:1px solid var(--bdr);">
+      <td style="padding:8px 10px;">
+        <div style="font-weight:700;font-size:12px;">🏔️ ${t.name||"—"}</div>
+        <div style="font-size:10px;color:var(--muted);">👥 ${t.persons||1} شخص${t.guide?" · 🧭 "+t.guide:""}</div>
+        ${t.notes?`<div style="font-size:9px;color:var(--muted);margin-top:2px;">📝 ${t.notes}</div>`:""}
+      </td>
+      <td style="padding:8px 10px;">
+        <div style="font-weight:600;">${t.guest||"—"}</div>
+        ${t.guide?`<div style="font-size:10px;color:#c39bd3;">🧭 ${t.guide}</div>`:""}
+      </td>
+      <td style="padding:8px 10px;white-space:nowrap;color:var(--muted);font-size:11px;">${fmtD(t.date)}</td>
+      <td style="padding:8px 10px;font-size:11px;color:var(--muted);">${ppLabel}<span style="font-size:8px;display:block;color:var(--muted);">/ فرد</span></td>
+      <td style="padding:8px 10px;font-weight:700;color:#2ecc71;white-space:nowrap;">£${(t.price||0).toLocaleString()}</td>
+      <td style="padding:8px 10px;">${payBadge}${statusBadge}</td>
+      <td style="padding:4px;text-align:center;">
+        <button class="btn bg bsm" onclick="editTour(${idx})" style="margin-bottom:3px;">✏️</button><br>
+        ${t.payMethod==="cash"?`<button class="btn bsm" style="background:rgba(201,168,76,0.15);color:var(--gold);border:1px solid rgba(201,168,76,0.3);" onclick="openTourInvoice(${idx})">📄</button>`:""}
+      </td>
+    </tr>`;
+  }).join("");
+}
+
+function clearTourFilters(){
+  const m=document.getElementById("tour-filter-month");
+  const p=document.getElementById("tour-filter-pay");
+  if(m) m.value="";
+  if(p) p.value="";
+  renderTours();
+}
+
+function openTourModal(edit){
+  tourEdit = (edit!==undefined) ? edit : null;
+  fillRoomSel("tm-room");
+  // Add empty option at top
+  const rs = document.getElementById("tm-room");
+  if(rs) rs.innerHTML = '<option value="">-- اختر الغرفة (اختياري) --</option>' + rs.innerHTML;
+
+  const titleEl = document.getElementById("tour-modal-title");
+  const delBtn  = document.getElementById("tm-delete-btn");
+  if(tourEdit!==null){
+    if(titleEl) titleEl.textContent = "تعديل الرحلة";
+    if(delBtn)  delBtn.style.display="block";
+    const t = tours[tourEdit];
+    document.getElementById("tm-name").value    = t.name||"";
+    document.getElementById("tm-date").value    = t.date||"";
+    document.getElementById("tm-persons").value = t.persons||1;
+    document.getElementById("tm-guide").value   = t.guide||"";
+    document.getElementById("tm-guest").value   = t.guest||"";
+    document.getElementById("tm-room").value    = t.room||"";
+    document.getElementById("tm-price-pp").value= t.pricePerPerson||0;
+    document.getElementById("tm-price").value   = t.price||0;
+    document.getElementById("tm-pay-method").value = t.payMethod||"cash";
+    document.getElementById("tm-pay-status").value = t.payStatus||"pending";
+    document.getElementById("tm-paid-amount").value= t.paidAmount||0;
+    document.getElementById("tm-notes").value   = t.notes||"";
+  } else {
+    if(titleEl) titleEl.textContent = "إضافة رحلة جديدة";
+    if(delBtn)  delBtn.style.display="none";
+    document.getElementById("tm-name").value    = "";
+    document.getElementById("tm-date").value    = toDay();
+    document.getElementById("tm-persons").value = 1;
+    document.getElementById("tm-guide").value   = "";
+    document.getElementById("tm-guest").value   = "";
+    document.getElementById("tm-room").value    = "";
+    document.getElementById("tm-price-pp").value= 0;
+    document.getElementById("tm-price").value   = 0;
+    document.getElementById("tm-pay-method").value = "cash";
+    document.getElementById("tm-pay-status").value = "pending";
+    document.getElementById("tm-paid-amount").value= 0;
+    document.getElementById("tm-notes").value   = "";
+  }
+  onTourPayChange();
+  calcTourPaidFields();
+  document.getElementById("tour-modal").classList.add("on");
+}
+
+function editTour(idx){ openTourModal(idx); }
+function closeTourModal(){ closeM("tour-modal"); }
+
+function calcTourTotal(){
+  const pp = parseFloat(document.getElementById("tm-price-pp").value)||0;
+  const n  = parseInt(document.getElementById("tm-persons").value)||1;
+  document.getElementById("tm-price").value = (pp*n).toFixed(2);
+  calcTourPaidFields();
+}
+function calcTourPP(){
+  const total = parseFloat(document.getElementById("tm-price").value)||0;
+  const n     = parseInt(document.getElementById("tm-persons").value)||1;
+  document.getElementById("tm-price-pp").value = n>0?(total/n).toFixed(2):"0";
+  calcTourPaidFields();
+}
+function calcTourPaidFields(){
+  const status = document.getElementById("tm-pay-status").value;
+  const total  = parseFloat(document.getElementById("tm-price").value)||0;
+  const paidW  = document.getElementById("tm-paid-wrap");
+  const remW   = document.getElementById("tm-remaining-wrap");
+  const remEl  = document.getElementById("tm-remaining");
+  if(status==="paid"){
+    if(paidW) paidW.style.display="none";
+    if(remW)  remW.style.display="none";
+    document.getElementById("tm-paid-amount").value = total.toFixed(2);
+  } else if(status==="partial"){
+    if(paidW) paidW.style.display="block";
+    if(remW)  remW.style.display="block";
+    const paid = parseFloat(document.getElementById("tm-paid-amount").value)||0;
+    if(remEl) remEl.value = Math.max(0,total-paid).toFixed(2);
+  } else {
+    if(paidW) paidW.style.display="none";
+    if(remW)  remW.style.display="none";
+    document.getElementById("tm-paid-amount").value = "0";
+    if(remEl) remEl.value = total.toFixed(2);
+  }
+}
+function onTourPayChange(){
+  const method = document.getElementById("tm-pay-method").value;
+  const info   = document.getElementById("tm-room-charge-info");
+  const roomSel = document.getElementById("tm-room");
+  if(info) info.style.display = method==="room"?"block":"none";
+  if(roomSel) roomSel.required = method==="room";
+}
+
+function tourGuestSearch(q){
+  const sug = document.getElementById("tm-guest-suggest");
+  if(!sug) return;
+  if(!q||q.length<2){ sug.style.display="none"; return; }
+  const matches = bookings.filter(b=>b.name&&b.name.toLowerCase().includes(q.toLowerCase())&&b.status!=="Cancelled").slice(0,6);
+  if(!matches.length){ sug.style.display="none"; return; }
+  sug.style.display="block";
+  sug.innerHTML = matches.map(b=>`<div onclick="selectTourGuest('${b.name.replace(/'/g,"\\'")}','${b.room||""}')" style="padding:7px 10px;cursor:pointer;font-size:12px;border-bottom:1px solid var(--bdr);">👤 ${b.name} <span style="color:var(--muted);font-size:10px;">· غرفة ${b.room||"—"}</span></div>`).join("");
+}
+
+function selectTourGuest(name,room){
+  document.getElementById("tm-guest").value = name;
+  if(room) document.getElementById("tm-room").value = room;
+  const sug=document.getElementById("tm-guest-suggest");
+  if(sug) sug.style.display="none";
+}
+
+function saveTour(){
+  const name   = document.getElementById("tm-name").value.trim();
+  const date   = document.getElementById("tm-date").value;
+  const persons= parseInt(document.getElementById("tm-persons").value)||1;
+  const guide  = document.getElementById("tm-guide").value.trim();
+  const guest  = document.getElementById("tm-guest").value.trim();
+  const room   = document.getElementById("tm-room").value;
+  const pricePerPerson = parseFloat(document.getElementById("tm-price-pp").value)||0;
+  const price  = parseFloat(document.getElementById("tm-price").value)||0;
+  const payMethod = document.getElementById("tm-pay-method").value;
+  const payStatus = document.getElementById("tm-pay-status").value;
+  const paidAmount= parseFloat(document.getElementById("tm-paid-amount").value)||0;
+  const notes  = document.getElementById("tm-notes").value.trim();
+
+  if(!name){ alert("⚠️ أدخل اسم الرحلة"); return; }
+  if(!date){ alert("⚠️ أدخل تاريخ الرحلة"); return; }
+  if(payMethod==="room" && !room){ alert("⚠️ اختر رقم الغرفة للدفع على الغرفة"); return; }
+
+  const tour = {
+    id: tourEdit!==null ? tours[tourEdit].id : "TR-"+Date.now(),
+    name, date, persons, guide, guest, room,
+    pricePerPerson, price, payMethod, payStatus,
+    paidAmount: payStatus==="paid" ? price : (payStatus==="partial" ? paidAmount : 0),
+    notes,
+    createdAt: tourEdit!==null ? (tours[tourEdit].createdAt||toDay()) : toDay()
+  };
+
+  // If pay method is "room" → add as roomCharge to the booking
+  if(payMethod==="room"){
+    // Remove old room charge if editing and room/price changed
+    if(tourEdit!==null){
+      const oldTour = tours[tourEdit];
+      if(oldTour.payMethod==="room" && oldTour.room){
+        _removeTourRoomCharge(oldTour.id, oldTour.room);
+      }
+    }
+    // Find active booking in this room
+    const td = toDay();
+    const bkIdx = bookings.findIndex(b=>b.room===room && b.status!=="Cancelled" && b.status!=="Standby" && b.ci<=date && b.co>=date);
+    if(bkIdx<0){
+      // Fallback: find any current booking in this room
+      const bkIdx2 = bookings.findIndex(b=>b.room===room && b.status!=="Cancelled" && b.status!=="Standby");
+      if(bkIdx2>=0){
+        _attachTourToBooking(bkIdx2, tour);
+      } else {
+        if(!confirm("⚠️ لم يتم العثور على حجز نشط في الغرفة "+room+" في هذا التاريخ.\n\nهل تريد الحفظ كـ كاش بدلاً من ذلك؟")){return;}
+        tour.payMethod="cash";
+      }
+    } else {
+      _attachTourToBooking(bkIdx, tour);
+    }
+  } else {
+    // If was previously "room" and now changed to cash → remove old room charge
+    if(tourEdit!==null){
+      const oldTour = tours[tourEdit];
+      if(oldTour.payMethod==="room" && oldTour.room){
+        _removeTourRoomCharge(oldTour.id, oldTour.room);
+      }
+    }
+  }
+
+  if(tourEdit!==null) tours[tourEdit]=tour; else tours.push(tour);
+  sv("dta_tours", tours);
+  closeTourModal();
+  renderTours();
+  sNotify("🏔️ تم حفظ الرحلة", tour.payMethod==="room"?"تمت إضافتها لفاتورة غرفة "+tour.room:"محفوظة كفاتورة كاش مستقلة","success",3000);
+}
+
+function _attachTourToBooking(bkIdx, tour){
+  if(!bookings[bkIdx].tourCharges) bookings[bkIdx].tourCharges=[];
+  // Remove old entry if editing
+  if(tourEdit!==null){
+    const oldId = tours[tourEdit].id;
+    bookings[bkIdx].tourCharges = bookings[bkIdx].tourCharges.filter(tc=>tc.tourId!==oldId);
+  }
+  bookings[bkIdx].tourCharges.push({
+    tourId: tour.id,
+    tourName: tour.name,
+    date: tour.date,
+    persons: tour.persons,
+    guide: tour.guide,
+    price: tour.price,
+    notes: tour.notes,
+    status: "pending"
+  });
+  sv("dta_bk", bookings);
+}
+
+function _removeTourRoomCharge(tourId, room){
+  bookings.forEach((b,i)=>{
+    if(b.room===room && b.tourCharges){
+      bookings[i].tourCharges = b.tourCharges.filter(tc=>tc.tourId!==tourId);
+    }
+  });
+  sv("dta_bk", bookings);
+}
+
+function deleteTour(){
+  if(tourEdit===null) return;
+  if(!confirm("هل تريد حذف هذه الرحلة؟")) return;
+  const t = tours[tourEdit];
+  // Remove from booking room charges if applicable
+  if(t.payMethod==="room" && t.room){
+    _removeTourRoomCharge(t.id, t.room);
+  }
+  tours.splice(tourEdit,1);
+  sv("dta_tours",tours);
+  closeTourModal();
+  renderTours();
+  sNotify("🗑 تم الحذف","تم حذف الرحلة","info",2000);
+}
+
+// ── Tour Invoice (Cash Only) ──
+let _currentTourInvIdx = -1;
+function openTourInvoice(idx){
+  _currentTourInvIdx = idx;
+  const t = tours[idx];
+  if(!t) return;
+  const prop = (typeof PROP!=="undefined") ? PROP : {name:"Dahab Trendy Accommodation", address:"Dahab, South Sinai, Egypt", phone:"+20 109 953 1272", email:"dahabtrendyinn@gmail.com"};
+  const today = toDay();
+  const invNo = t.invNo || ("TR-"+t.id.slice(-6));
+
+  const pricePerPerson = t.pricePerPerson || (t.persons>0 ? Math.round((t.price||0)/(t.persons||1)) : 0);
+  const total = t.price||0;
+  const paid  = t.paidAmount||0;
+  const remaining = Math.max(0, total - paid);
+
+  // Payment status badge
+  const psColor = t.payStatus==="paid" ? "#155724" : t.payStatus==="partial" ? "#856404" : "#721c24";
+  const psBg    = t.payStatus==="paid" ? "#d4edda" : t.payStatus==="partial" ? "#fff3cd" : "#f8d7da";
+  const psLabel = t.payStatus==="paid" ? "✅ Paid — مدفوع بالكامل" : t.payStatus==="partial" ? "🔶 Partial — دفع جزئي" : "🔴 Pending — لم يُدفع";
+
+  document.getElementById("tour-inv-preview").innerHTML = `
+    <div class="invp-hdr">
+      <div><strong style="font-size:14px;">🌊 ${prop.name}</strong>
+        <div style="color:#666;font-size:10px;margin-top:2px;">${prop.address}</div>
+        <div style="color:#666;font-size:10px;">${prop.phone} · ${prop.email}</div>
+      </div>
+      <span class="invp-badge" style="background:#1a5276;color:#fff;">🏔️ TOUR INVOICE</span>
+    </div>
+    <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:7px;margin-bottom:11px;">
+      <div><div style="font-size:9px;color:#888;">Invoice No.</div><div style="font-weight:700;font-size:10px;">${invNo}</div></div>
+      <div><div style="font-size:9px;color:#888;">Issue Date</div><div style="font-weight:700;font-size:10px;">${fmtD(today)}</div></div>
+      <div><div style="font-size:9px;color:#888;">Tour Date</div><div style="font-weight:700;font-size:10px;color:#c9a84c;">${fmtD(t.date)}</div></div>
+      <div><div style="font-size:9px;color:#888;">Status</div>
+        <span style="padding:2px 7px;border-radius:10px;font-size:9px;font-weight:700;background:${psBg};color:${psColor};">${psLabel}</span>
+      </div>
+    </div>
+    <div class="invp-sec">Bill To / بيانات العميل</div>
+    <div class="invp-gbox" style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+      <div>
+        <div style="font-weight:700;font-size:13px;">${t.guest||"—"}</div>
+        ${t.room?`<div style="font-size:10px;color:#888;margin-top:2px;">🏨 غرفة ${t.room}</div>`:""}
+      </div>
+    </div>
+    <div class="invp-sec">Tour Details / تفاصيل الرحلة</div>
+    <table class="invp-tbl">
+      <thead>
+        <tr>
+          <th style="text-align:right;">الوصف / Description</th>
+          <th style="text-align:center;">الأشخاص</th>
+          <th style="text-align:right;">سعر الفرد</th>
+          <th style="text-align:right;">الإجمالي</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            🏔️ <strong>${t.name}</strong><br>
+            ${t.guide?`<span style="font-size:9px;color:#888;">🧭 مرشد: ${t.guide}</span><br>`:""}
+            <span style="font-size:9px;color:#888;">📅 تاريخ الرحلة: ${fmtD(t.date)}</span>
+            ${t.notes?`<br><span style="font-size:9px;color:#888;">📝 ${t.notes}</span>`:""}
+          </td>
+          <td style="text-align:center;font-weight:700;">${t.persons||1}</td>
+          <td style="text-align:right;">£${pricePerPerson.toLocaleString()}<span style="color:#888;font-size:8px;">/فرد</span></td>
+          <td style="text-align:right;"><strong>£${total.toLocaleString()}</strong></td>
+        </tr>
+        <tr style="background:#f9f9f9;">
+          <td colspan="2" style="color:#888;font-size:9px;">💵 طريقة الدفع: كاش</td>
+          <td colspan="2"></td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="display:flex;justify-content:flex-end;margin-bottom:11px;">
+      <div class="invp-totbox">
+        <div class="invp-tr"><span>Subtotal</span><span>£${total.toLocaleString()}</span></div>
+        <div class="invp-tr"><span>Tax (0%)</span><span>£0.00</span></div>
+        ${paid>0?`<div class="invp-tr"><span>✅ مدفوع / Paid</span><span style="color:#27ae60;">- £${paid.toLocaleString()}</span></div>`:""}
+        <div class="invp-tr grd" style="font-size:13px;font-weight:700;border-top:2px solid #c9a84c;padding-top:6px;margin-top:4px;">
+          <span>${t.payStatus==="paid"?"✅ تم الدفع":"⏳ المتبقي / Balance Due"}</span>
+          <span style="color:${t.payStatus==="paid"?"#27ae60":"#e74c3c"};">£${t.payStatus==="paid"?"0":remaining.toLocaleString()}</span>
+        </div>
+      </div>
+    </div>
+    <div style="font-size:9px;color:#888;text-align:center;border-top:1px solid #eee;padding-top:8px;">
+      شكراً لاختياركم خدماتنا 🙏 · Thank you for choosing us<br>
+      <strong style="color:#c9a84c;">${prop.name}</strong> · ${prop.phone}
+    </div>`;
+  document.getElementById("tour-inv-modal").classList.add("on");
+}
+
+function printTourInvoice(){
+  const content = document.getElementById("tour-inv-preview").innerHTML;
+  const w = window.open("","_blank","width=600,height=800");
+  w.document.write(`<html><head><title>Tour Invoice</title>
+  <style>body{font-family:Arial,sans-serif;direction:rtl;padding:20px;}
+  .invp-hdr{display:flex;justify-content:space-between;align-items:flex-start;padding:16px;background:#1a1a2e;color:#fff;border-radius:8px 8px 0 0;margin-bottom:12px;flex-wrap:wrap;gap:8px;}
+  .invp-badge{padding:4px 10px;border-radius:6px;font-size:10px;font-weight:700;}
+  .invp-sec{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#c9a84c;border-bottom:2px solid #f0e8cc;padding-bottom:5px;margin:14px 0 8px;}
+  .invp-gbox{background:#f9f5ea;border:1px solid #e0d0a0;border-radius:6px;padding:8px 12px;font-size:12px;margin-bottom:8px;}
+  .invp-tbl{width:100%;border-collapse:collapse;font-size:11px;margin-bottom:10px;}
+  .invp-tbl th,.invp-tbl td{padding:6px 8px;border-bottom:1px solid #eee;text-align:right;}
+  .invp-tbl thead tr{background:#f9f5ea;}
+  .invp-totbox{background:#f9f5ea;border:1px solid #e0d0a0;border-radius:8px;padding:10px 14px;min-width:160px;}
+  .invp-tr{display:flex;justify-content:space-between;gap:16px;font-size:11px;padding:3px 0;}
+  @media print{body{padding:0;} button{display:none;}}</style>
+  </head><body>${content}<br><button onclick="window.print()">🖨️ طباعة</button></body></html>`);
+  w.document.close();
+}
+
+function waTourInvoice(){
+  if(_currentTourInvIdx<0) return;
+  const t = tours[_currentTourInvIdx];
+  const prop = (typeof PROP!=="undefined") ? PROP : {name:"Dahab Trendy Accommodation", phone:"+20 109 953 1272"};
+  const pricePerPerson = t.pricePerPerson || (t.persons>0 ? Math.round((t.price||0)/(t.persons||1)) : 0);
+  const paid = t.paidAmount||0;
+  const remaining = Math.max(0,(t.price||0)-paid);
+  const psLabel = t.payStatus==="paid" ? "✅ مدفوع بالكامل" : t.payStatus==="partial" ? "🔶 دفع جزئي" : "🔴 لم يُدفع";
+  const msg = `🏔️ *فاتورة رحلة — ${prop.name}*\n\n`+
+    `*الرحلة:* ${t.name}\n`+
+    `*التاريخ:* ${fmtD(t.date)}\n`+
+    `*الضيف:* ${t.guest||"—"}\n`+
+    (t.guide?`*المرشد:* ${t.guide}\n`:"")+
+    `*عدد الأشخاص:* ${t.persons}\n`+
+    `*سعر الفرد:* £${pricePerPerson.toLocaleString()}\n`+
+    `*الإجمالي:* £${(t.price||0).toLocaleString()}\n`+
+    (paid>0?`*المدفوع:* £${paid.toLocaleString()}\n`:"")+
+    (t.payStatus!=="paid"?`*المتبقي:* £${remaining.toLocaleString()}\n`:"")+
+    `*حالة الدفع:* ${psLabel}\n\n`+
+    `شكراً لاختياركم خدماتنا 🙏\n${prop.phone}`;
+  window.open("https://wa.me/?text="+encodeURIComponent(msg),"_blank");
+}
+
 // ═══════════ RESTAURANT ═══════════
 function renderRestaurant(){
 const list=restaurantTx.filter(t=>restFilter==="all"||t.type===restFilter);
@@ -12289,15 +13004,17 @@ let lastPOSOrder = null;
 
 function switchRestView(view, btn){
   currentRestView = view;
-  ["ledger","pos","menu"].forEach(v=>{
-    document.getElementById("rest-view-"+v).style.display = v===view ? "" : "none";
+  ["ledger","pos","menu","menu-browse"].forEach(v=>{
+    const el = document.getElementById("rest-view-"+v);
+    if(el) el.style.display = v===view ? "" : "none";
   });
   document.querySelectorAll("#rest-main-tabs button").forEach(b=>b.classList.remove("act"));
   if(btn) btn.classList.add("act");
   const addBtn = document.getElementById("rest-add-btn");
   if(addBtn) addBtn.style.display = view==="ledger" ? "" : "none";
-  if(view==="pos"){ renderPOSMenu(); renderPOSCart(); renderPOSTodayOrders(); populatePOSRoomSelect(); }
+  if(view==="pos"){ renderPOSMenu(); renderPOSCart(); renderPOSTodayOrders(); populatePOSRoomSelect(); renderPOSCatQuick(); }
   if(view==="menu") renderMenuEditor();
+  if(view==="menu-browse") renderMenuBrowse();
   if(view==="ledger") renderRestaurant();
 }
 
@@ -12313,27 +13030,184 @@ function populatePOSRoomSelect(){
 function renderMenuEditor(){
   const grid = document.getElementById("menu-grid");
   const empty = document.getElementById("menu-empty");
-  if(!restMenu.length){ if(grid) grid.innerHTML=""; if(empty) empty.style.display="block"; return; }
+  const catStats = document.getElementById("menu-editor-cat-stats");
+  const catFilterSel = document.getElementById("menu-editor-cat-filter");
+
+  // Populate category filter dropdown
+  if(catFilterSel){
+    const cats = [...new Set(restMenu.map(i=>i.cat).filter(Boolean))];
+    const curVal = catFilterSel.value;
+    catFilterSel.innerHTML = '<option value="">كل الفئات</option>' +
+      cats.map(c=>`<option value="${c}" ${c===curVal?"selected":""}>${c}</option>`).join("");
+  }
+
+  // Category stats chips
+  if(catStats){
+    const cats = [...new Set(restMenu.map(i=>i.cat).filter(Boolean))];
+    const catMeta = getCatMeta();
+    catStats.innerHTML = cats.map(cat=>{
+      const count = restMenu.filter(i=>i.cat===cat).length;
+      const meta = catMeta[cat] || {color:"#95a5a6", cls:"cat-other"};
+      return `<div style="background:${meta.color}22;border:1px solid ${meta.color}55;border-radius:20px;padding:4px 12px;font-size:11px;color:${meta.color};font-weight:700;cursor:pointer;" onclick="document.getElementById('menu-editor-cat-filter').value='${cat}';renderMenuEditor();">${cat} <span style="opacity:.7;">(${count})</span></div>`;
+    }).join("") + (cats.length ? `<div style="background:rgba(255,255,255,0.05);border:1px solid var(--bdr);border-radius:20px;padding:4px 12px;font-size:11px;color:var(--muted);cursor:pointer;" onclick="document.getElementById('menu-editor-cat-filter').value='';renderMenuEditor();">الكل (${restMenu.length})</div>` : "");
+  }
+
+  const filterCat = catFilterSel ? catFilterSel.value : "";
+  const filtered = filterCat ? restMenu.filter(i=>i.cat===filterCat) : restMenu;
+
+  if(!filtered.length){
+    if(grid) grid.innerHTML="";
+    if(empty) empty.style.display="block";
+    return;
+  }
   if(empty) empty.style.display="none";
-  const catColors = {"مشروبات 🥤":"#3498db","أكل 🍽️":"#e67e22","شيشة 💨":"#8e44ad","حلويات 🍰":"#e91e8c","وجبات خفيفة 🥪":"#27ae60","أخرى 📌":"#7f8c8d"};
-  if(grid) grid.innerHTML = restMenu.map((item,i)=>`
-    <div class="card" style="padding:12px;text-align:center;position:relative;">
-      <div style="font-size:28px;margin-bottom:4px;">${item.emoji||"🍽️"}</div>
-      <div style="font-weight:700;font-size:12px;color:var(--text);margin-bottom:4px;">${item.name}</div>
-      <div style="font-size:10px;color:${catColors[item.cat]||"var(--muted)"};margin-bottom:6px;">${item.cat||""}</div>
-      <div style="font-size:16px;font-weight:700;color:var(--gold);margin-bottom:8px;">£${item.price}</div>
-      ${item.note?`<div style="font-size:9px;color:var(--muted);margin-bottom:8px;">${item.note}</div>`:""}
-      <div style="display:flex;gap:4px;">
-        <button class="btn bb bsm" style="flex:1;" onclick="openMenuItemM(${i})">✏️</button>
-        <button class="btn br bsm" style="flex:1;" onclick="deleteMenuItem(${i})">🗑</button>
+
+  const catMeta = getCatMeta();
+  if(grid) grid.innerHTML = filtered.map((item)=>{
+    const i = restMenu.indexOf(item);
+    const meta = catMeta[item.cat] || {color:"#95a5a6", cls:"cat-other"};
+    return `
+    <div class="menu-editor-card">
+      <div class="menu-editor-cat-stripe ${meta.cls}" style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,${meta.color},${meta.color2||meta.color});border-radius:14px 14px 0 0;"></div>
+      <div style="margin-top:6px;">
+        <div style="font-size:32px;margin-bottom:6px;">${item.emoji||"🍽️"}</div>
+        <div style="font-weight:700;font-size:12px;color:var(--text);margin-bottom:4px;">${item.name}</div>
+        <div style="font-size:10px;color:${meta.color};margin-bottom:6px;background:${meta.color}18;border-radius:20px;padding:2px 8px;display:inline-block;">${item.cat||""}</div>
+        <div style="font-size:16px;font-weight:800;color:var(--gold);margin-bottom:6px;">£${item.price}</div>
+        ${item.note?`<div style="font-size:9px;color:var(--muted);margin-bottom:8px;line-height:1.4;">${item.note}</div>`:""}
+        <div style="display:flex;gap:4px;">
+          <button class="btn bb bsm" style="flex:1;" onclick="openMenuItemM(${i})">✏️ تعديل</button>
+          <button class="btn bsm" style="flex:1;background:#e74c3c;color:#fff;" onclick="deleteMenuItem(${i})">🗑</button>
+        </div>
       </div>
-    </div>`).join("");
+    </div>`;
+  }).join("");
+}
+
+function getCatMeta(){
+  return {
+    "لحوم 🥩":      {color:"#e74c3c", color2:"#c0392b", cls:"cat-meat",    emoji:"🥩"},
+    "فراخ 🍗":      {color:"#e67e22", color2:"#f39c12", cls:"cat-chicken", emoji:"🍗"},
+    "أسماك 🐟":     {color:"#3498db", color2:"#2980b9", cls:"cat-fish",    emoji:"🐟"},
+    "مشروبات 🥤":   {color:"#1abc9c", color2:"#16a085", cls:"cat-drinks",  emoji:"🥤"},
+    "حلويات 🍰":    {color:"#9b59b6", color2:"#8e44ad", cls:"cat-sweets",  emoji:"🍰"},
+    "وجبات خفيفة 🥪":{color:"#27ae60",color2:"#2ecc71", cls:"cat-snacks",  emoji:"🥪"},
+    "شيشة 💨":      {color:"#8e44ad", color2:"#5d3a8e", cls:"cat-shisha",  emoji:"💨"},
+    "أكل 🍽️":      {color:"#c9a84c", color2:"#a07830", cls:"cat-other",   emoji:"🍽️"},
+    "أخرى 📌":      {color:"#95a5a6", color2:"#7f8c8d", cls:"cat-other",   emoji:"📌"},
+  };
+}
+
+function renderMenuBrowse(){
+  const statsEl = document.getElementById("menu-browse-stats");
+  const tabsEl = document.getElementById("menu-cat-tabs");
+  const contentEl = document.getElementById("menu-browse-content");
+  if(!tabsEl || !contentEl) return;
+
+  const catMeta = getCatMeta();
+  const cats = [...new Set(restMenu.map(i=>i.cat).filter(Boolean))];
+  const activeCat = window._browseCat || "all";
+
+  // Stats bar
+  if(statsEl){
+    const totalItems = restMenu.length;
+    const totalCats = cats.length;
+    const avgPrice = restMenu.length ? (restMenu.reduce((s,i)=>s+i.price,0)/restMenu.length).toFixed(0) : 0;
+    const mostPopCat = cats.length ? cats.reduce((a,b)=>restMenu.filter(i=>i.cat===a).length >= restMenu.filter(i=>i.cat===b).length ? a : b, cats[0]) : "-";
+    statsEl.innerHTML = `
+      <div class="rest-stat-mini"><span class="rest-stat-mini-icon">🍽️</span><div><div class="rest-stat-mini-val">${totalItems}</div><div class="rest-stat-mini-lbl">إجمالي الأصناف</div></div></div>
+      <div class="rest-stat-mini"><span class="rest-stat-mini-icon">🗂️</span><div><div class="rest-stat-mini-val">${totalCats}</div><div class="rest-stat-mini-lbl">الفئات</div></div></div>
+      <div class="rest-stat-mini"><span class="rest-stat-mini-icon">💰</span><div><div class="rest-stat-mini-val">£${avgPrice}</div><div class="rest-stat-mini-lbl">متوسط السعر</div></div></div>
+      ${mostPopCat !== "-" ? `<div class="rest-stat-mini"><span class="rest-stat-mini-icon">${catMeta[mostPopCat]?.emoji||"🏆"}</span><div><div class="rest-stat-mini-val" style="font-size:11px;">${mostPopCat.split(" ")[0]}</div><div class="rest-stat-mini-lbl">الأكثر أصنافاً</div></div></div>` : ""}
+    `;
+  }
+
+  // Category tabs
+  tabsEl.innerHTML = `
+    <button class="menu-cat-tab cat-all ${activeCat==="all"?"act":""}" onclick="setBrowseCat('all',this)">
+      <span class="cat-emoji">🗂️</span>الكل<span class="cat-count">${restMenu.length} صنف</span>
+    </button>` +
+    cats.map(cat=>{
+      const meta = catMeta[cat] || {emoji:"🍽️", cls:"cat-other"};
+      const count = restMenu.filter(i=>i.cat===cat).length;
+      return `<button class="menu-cat-tab ${meta.cls} ${activeCat===cat?"act":""}" onclick="setBrowseCat('${cat}',this)">
+        <span class="cat-emoji">${meta.emoji}</span>${cat.split(" ")[0]}<span class="cat-count">${count} صنف</span>
+      </button>`;
+    }).join("");
+
+  // Content
+  if(!restMenu.length){
+    contentEl.innerHTML = `<div class="empty" style="padding:40px;text-align:center;">
+      <div style="font-size:48px;margin-bottom:12px;">🍽️</div>
+      <div style="color:var(--muted);font-size:14px;">لا توجد أصناف بعد</div>
+      <button class="btn bg" style="margin-top:14px;" onclick="switchRestView('menu',document.getElementById('rtab-menu'))">+ إضافة أصناف</button>
+    </div>`;
+    return;
+  }
+
+  const showCats = activeCat === "all" ? cats : [activeCat];
+  contentEl.innerHTML = showCats.map(cat=>{
+    const items = restMenu.filter(i=>i.cat===cat);
+    if(!items.length) return "";
+    const meta = catMeta[cat] || {color:"#95a5a6", emoji:"🍽️"};
+    return `
+      <div class="menu-section-header">
+        <span class="menu-section-icon">${meta.emoji}</span>
+        <span class="menu-section-title">${cat}</span>
+        <span class="menu-section-count">${items.length} صنف</span>
+        <div style="flex:1;height:1px;background:linear-gradient(90deg,${meta.color}44,transparent);margin-right:10px;margin-top:2px;"></div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;margin-bottom:24px;">
+        ${items.map(item=>{
+          const i = restMenu.indexOf(item);
+          const inCart = posCart.find(c=>c.idx===i);
+          return `<div class="menu-item-card ${meta.cls} ${inCart?"in-cart":""}" onclick="quickAddFromBrowse(${i})">
+            ${inCart?`<div class="menu-cart-badge">${inCart.qty}</div>`:""}
+            <span class="menu-item-emoji-wrap">${item.emoji||"🍽️"}</span>
+            <div class="menu-item-name">${item.name}</div>
+            <div class="menu-item-price">£${item.price}</div>
+            ${item.note?`<div class="menu-item-note-tag">${item.note}</div>`:""}
+          </div>`;
+        }).join("")}
+      </div>`;
+  }).join("");
+}
+
+function setBrowseCat(cat, btn){
+  window._browseCat = cat;
+  renderMenuBrowse();
+}
+
+function quickAddFromBrowse(idx){
+  addToCart(idx);
+  sNotify("🛒 تمت الإضافة", restMenu[idx]?.name + " — تم إضافته للطلب", "success", 1800);
+}
+
+function renderPOSCatQuick(){
+  const el = document.getElementById("pos-cat-quick");
+  if(!el) return;
+  const catMeta = getCatMeta();
+  const cats = [...new Set(restMenu.map(i=>i.cat).filter(Boolean))];
+  el.innerHTML = `<button onclick="setPOSCatQuick('',this)" style="padding:5px 10px;border-radius:6px;border:1px solid var(--bdr);background:rgba(201,168,76,0.2);color:var(--gold);cursor:pointer;font-size:11px;font-weight:700;font-family:Arial,sans-serif;" class="pos-cq-btn act">الكل</button>` +
+    cats.map(cat=>{
+      const meta = catMeta[cat]||{color:"#95a5a6",emoji:"🍽️"};
+      return `<button onclick="setPOSCatQuick('${cat}',this)" class="pos-cq-btn" style="padding:5px 10px;border-radius:6px;border:1px solid ${meta.color}55;background:${meta.color}18;color:${meta.color};cursor:pointer;font-size:11px;font-weight:700;font-family:Arial,sans-serif;">${meta.emoji} ${cat.split(" ")[0]}</button>`;
+    }).join("");
+}
+
+function setPOSCatQuick(cat, btn){
+  document.querySelectorAll(".pos-cq-btn").forEach(b=>b.classList.remove("act"));
+  if(btn) btn.classList.add("act");
+  const sel = document.getElementById("pos-cat-filter");
+  if(sel){ sel.value = cat; }
+  renderPOSMenu();
 }
 
 function renderPOSMenu(){
   const grid = document.getElementById("pos-menu-grid");
   const catSel = document.getElementById("pos-cat-filter");
   if(!grid) return;
+  const catMeta = getCatMeta();
   const cats = [...new Set(restMenu.map(i=>i.cat).filter(Boolean))];
   if(catSel){
     const cur = catSel.value;
@@ -12343,17 +13217,18 @@ function renderPOSMenu(){
   const filtered = fCat ? restMenu.filter(i=>i.cat===fCat) : restMenu;
   if(!filtered.length){
     grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;color:var(--muted);padding:24px;font-size:12px;">
-      لا توجد أصناف — اذهب لـ قائمة الطعام لإضافة أصناف
+      لا توجد أصناف — اذهب لـ إدارة القائمة لإضافة أصناف
     </div>`; return;
   }
   grid.innerHTML = filtered.map((item,fi)=>{
     const i = restMenu.indexOf(item);
     const inCart = posCart.find(c=>c.idx===i);
-    return `<div onclick="addToCart(${i})" style="background:${inCart?"rgba(230,126,34,0.15)":"var(--card)"};border:1px solid ${inCart?"rgba(230,126,34,0.6)":"var(--bdr)"};border-radius:10px;padding:10px 8px;text-align:center;cursor:pointer;transition:all .15s;user-select:none;position:relative;">
-      ${inCart?`<div style="position:absolute;top:5px;right:6px;background:#e67e22;color:#fff;border-radius:50%;width:18px;height:18px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;">${inCart.qty}</div>`:""}
-      <div style="font-size:24px;margin-bottom:3px;">${item.emoji||"🍽️"}</div>
+    const meta = catMeta[item.cat]||{color:"#95a5a6"};
+    return `<div onclick="addToCart(${i})" class="menu-item-card ${inCart?"in-cart":""}" style="padding:10px 8px;">
+      ${inCart?`<div class="menu-cart-badge">${inCart.qty}</div>`:""}
+      <div style="font-size:26px;margin-bottom:3px;">${item.emoji||"🍽️"}</div>
       <div style="font-weight:700;font-size:11px;color:var(--text);margin-bottom:3px;line-height:1.3;">${item.name}</div>
-      <div style="font-size:13px;font-weight:700;color:var(--gold);">£${item.price}</div>
+      <div style="font-size:13px;font-weight:800;color:var(--gold);">£${item.price}</div>
     </div>`;
   }).join("");
 }
@@ -12531,6 +13406,189 @@ function printPOSReceipt(){
   w.document.close();
 }
 
+function printRestaurantInvoice(){
+  if(!lastPOSOrder){ sNotify("⚠️","لا يوجد طلب لإصدار فاتورة له","info",2500); return; }
+  const tx = lastPOSOrder;
+  const prop = (typeof PROP!=="undefined"&&PROP) ? PROP : {};
+  const now = new Date().toLocaleTimeString("ar-EG",{hour:"2-digit",minute:"2-digit"});
+  const invNo = "REST-" + Date.now().toString().slice(-6);
+  const issueDate = new Date().toLocaleDateString("ar-EG",{year:"numeric",month:"long",day:"numeric"});
+
+  const itemsRows = tx.items.map((c,i)=>`
+    <tr>
+      <td style="padding:10px 14px;border-bottom:1px solid #f0e8cc;text-align:center;color:#555;">${i+1}</td>
+      <td style="padding:10px 14px;border-bottom:1px solid #f0e8cc;">${c.emoji||""} ${c.name}</td>
+      <td style="padding:10px 14px;border-bottom:1px solid #f0e8cc;text-align:center;">${c.qty}</td>
+      <td style="padding:10px 14px;border-bottom:1px solid #f0e8cc;text-align:left;">£${c.price.toFixed(0)}</td>
+      <td style="padding:10px 14px;border-bottom:1px solid #f0e8cc;text-align:left;font-weight:700;">£${(c.price*c.qty).toFixed(0)}</td>
+    </tr>`).join("");
+
+  const subtotal = tx.subtotal || tx.egp;
+  const discAmt = tx.disc > 0 ? (subtotal * tx.disc/100) : 0;
+  const total = tx.egp;
+  const payMethod = tx.method==="كاش"||tx.method==="cash" ? "💵 نقداً" :
+                   tx.method==="card"||tx.method==="بطاقة" ? "💳 بطاقة بنكية" :
+                   tx.room ? `🏨 على حساب الغرفة ${tx.room}` : tx.method;
+
+  const html = `<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>فاتورة مطعم — ${invNo}</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Arial', sans-serif; background: #f5f0e8; color: #1a1a2e; padding: 30px 20px; }
+  .invoice-wrap { max-width: 720px; margin: 0 auto; background: #fff; border-radius: 16px; box-shadow: 0 8px 40px rgba(0,0,0,0.13); overflow: hidden; }
+  .inv-header { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 60%, #0f3460 100%); color: #fff; padding: 32px 36px; position: relative; }
+  .inv-header::after { content:''; position:absolute; bottom:0; left:0; right:0; height:4px; background:linear-gradient(90deg,#c9a84c,#f5e08a,#c9a84c); }
+  .inv-logo { font-size: 28px; font-weight: 900; color: #c9a84c; letter-spacing: 2px; margin-bottom: 4px; }
+  .inv-sub { font-size: 12px; color: rgba(255,255,255,0.6); letter-spacing: 3px; text-transform: uppercase; }
+  .inv-meta { display: flex; justify-content: space-between; align-items: flex-start; margin-top: 22px; flex-wrap: wrap; gap: 12px; }
+  .inv-meta-block { font-size: 12px; }
+  .inv-meta-block .lbl { color: rgba(255,255,255,0.5); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 3px; }
+  .inv-meta-block .val { color: #fff; font-weight: 700; font-size: 13px; }
+  .inv-no-badge { background: rgba(201,168,76,0.2); border: 1px solid rgba(201,168,76,0.5); border-radius: 8px; padding: 6px 14px; }
+  .inv-no-badge .lbl { color: #c9a84c; }
+  .inv-no-badge .val { color: #f5e08a; font-size: 15px; letter-spacing: 1px; }
+
+  .inv-body { padding: 28px 36px; }
+  .inv-section-title { font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #c9a84c; border-bottom: 2px solid #f0e8cc; padding-bottom: 7px; margin-bottom: 14px; margin-top: 22px; }
+
+  .guest-info { background: #faf7f0; border: 1px solid #f0e8cc; border-radius: 10px; padding: 16px 20px; display: flex; gap: 32px; flex-wrap: wrap; }
+  .guest-field { font-size: 12px; }
+  .guest-field .lbl { color: #999; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 3px; }
+  .guest-field .val { color: #1a1a2e; font-weight: 700; font-size: 13px; }
+
+  .items-table { width: 100%; border-collapse: collapse; margin-top: 4px; }
+  .items-table thead tr { background: linear-gradient(90deg,#1a1a2e,#16213e); }
+  .items-table thead th { color: #c9a84c; padding: 11px 14px; font-size: 11px; letter-spacing: 1px; text-align: right; font-weight: 700; }
+  .items-table thead th:first-child { text-align: center; border-radius: 8px 0 0 0; }
+  .items-table thead th:last-child { border-radius: 0 8px 0 0; }
+  .items-table tbody tr:hover { background: #faf7f0; }
+  .items-table tbody tr:last-child td { border-bottom: 2px solid #1a1a2e; }
+
+  .totals-box { display: flex; justify-content: flex-end; margin-top: 18px; }
+  .totals-inner { width: 280px; }
+  .totals-row { display: flex; justify-content: space-between; padding: 7px 0; border-bottom: 1px solid #f0e8cc; font-size: 13px; }
+  .totals-row:last-child { border-bottom: none; }
+  .totals-row.total-final { background: linear-gradient(90deg,#1a1a2e,#16213e); color: #fff; padding: 12px 14px; border-radius: 8px; margin-top: 8px; }
+  .totals-row.total-final .amount { color: #f5e08a; font-size: 18px; font-weight: 900; }
+  .disc-row { color: #e74c3c; }
+
+  .payment-badge { display: inline-flex; align-items: center; gap: 7px; background: #eafaf1; border: 1px solid #a9dfbf; border-radius: 8px; padding: 8px 16px; font-size: 12px; font-weight: 700; color: #1e8449; margin-top: 16px; }
+  .room-charge-note { background: #fff8e6; border: 1px solid #f0c040; border-radius: 8px; padding: 10px 14px; font-size: 11px; color: #856404; margin-top: 10px; }
+
+  .inv-footer { background: #1a1a2e; color: rgba(255,255,255,0.5); text-align: center; padding: 18px; font-size: 11px; }
+  .inv-footer strong { color: #c9a84c; }
+
+  @media print {
+    body { background: #fff; padding: 0; }
+    .invoice-wrap { box-shadow: none; border-radius: 0; }
+    .no-print { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="invoice-wrap">
+  <!-- Header -->
+  <div class="inv-header">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px;">
+      <div>
+        <div class="inv-logo">🏨 ${prop.name||"Dahab Trendy"}</div>
+        <div class="inv-sub">🍽️ Restaurant Invoice / فاتورة مطعم</div>
+        ${prop.phone?`<div style="font-size:11px;color:rgba(255,255,255,0.5);margin-top:6px;">📞 ${prop.phone}</div>`:""}
+      </div>
+      <div class="inv-no-badge">
+        <div class="lbl">رقم الفاتورة</div>
+        <div class="val">${invNo}</div>
+      </div>
+    </div>
+    <div class="inv-meta">
+      <div class="inv-meta-block">
+        <div class="lbl">تاريخ الإصدار</div>
+        <div class="val">📅 ${issueDate}</div>
+      </div>
+      <div class="inv-meta-block">
+        <div class="lbl">الوقت</div>
+        <div class="val">⏰ ${now}</div>
+      </div>
+      ${tx.room?`<div class="inv-meta-block">
+        <div class="lbl">رقم الغرفة</div>
+        <div class="val">🏨 غرفة ${tx.room}</div>
+      </div>`:""}
+    </div>
+  </div>
+
+  <div class="inv-body">
+    <!-- Guest Info -->
+    ${(tx.customer||tx.room)?`
+    <div class="inv-section-title">بيانات الضيف / Guest Info</div>
+    <div class="guest-info">
+      ${tx.customer?`<div class="guest-field"><div class="lbl">الاسم / Name</div><div class="val">👤 ${tx.customer}</div></div>`:""}
+      ${tx.room?`<div class="guest-field"><div class="lbl">الغرفة / Room</div><div class="val">🏨 ${tx.room}</div></div>`:""}
+    </div>`:""}
+
+    <!-- Items Table -->
+    <div class="inv-section-title">تفاصيل الطلب / Order Details</div>
+    <table class="items-table">
+      <thead>
+        <tr>
+          <th style="width:40px;text-align:center;">#</th>
+          <th>الصنف / Item</th>
+          <th style="width:60px;text-align:center;">الكمية</th>
+          <th style="width:80px;">السعر</th>
+          <th style="width:90px;">الإجمالي</th>
+        </tr>
+      </thead>
+      <tbody>${itemsRows}</tbody>
+    </table>
+
+    <!-- Totals -->
+    <div class="totals-box">
+      <div class="totals-inner">
+        <div class="totals-row">
+          <span style="color:#555;">المجموع الجزئي</span>
+          <span style="font-weight:700;">£${subtotal.toFixed(0)}</span>
+        </div>
+        ${tx.disc>0?`<div class="totals-row disc-row">
+          <span>خصم ${tx.disc}%</span>
+          <span>− £${discAmt.toFixed(0)}</span>
+        </div>`:""}
+        <div class="totals-row total-final">
+          <span style="font-weight:700;font-size:14px;">الإجمالي النهائي</span>
+          <span class="amount">£${total.toFixed(0)}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Payment Method -->
+    <div class="inv-section-title" style="margin-top:24px;">طريقة السداد</div>
+    <div class="payment-badge">${payMethod} — مدفوع ✅</div>
+    ${tx.room&&tx.method==="room"?`<div class="room-charge-note">⏳ تم إضافة هذا المبلغ على حساب الغرفة ${tx.room} وسيُحسم عند الدفع النهائي عند المغادرة.</div>`:""}
+    ${tx.notes?`<div style="margin-top:12px;font-size:12px;color:#555;background:#faf7f0;border-radius:8px;padding:10px 14px;border:1px solid #f0e8cc;">📝 <strong>ملاحظات:</strong> ${tx.notes}</div>`:""}
+  </div>
+
+  <!-- Footer -->
+  <div class="inv-footer">
+    <strong>${prop.name||"Dahab Trendy"}</strong> — شكراً لتعاملكم معنا 🙏
+    ${prop.phone?`<br>📞 ${prop.phone}`:""}
+    <br><span style="font-size:10px;opacity:.6;">هذه فاتورة رسمية من مطعم الفندق</span>
+  </div>
+</div>
+
+<div class="no-print" style="text-align:center;margin-top:20px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+  <button onclick="window.print()" style="background:#1a1a2e;color:#c9a84c;border:none;padding:12px 28px;font-size:14px;font-weight:700;border-radius:8px;cursor:pointer;letter-spacing:1px;">🖨️ طباعة / حفظ PDF</button>
+  <button onclick="window.close()" style="background:#e74c3c;color:#fff;border:none;padding:12px 20px;font-size:14px;font-weight:700;border-radius:8px;cursor:pointer;">✕ إغلاق</button>
+</div>
+</body>
+</html>`;
+
+  const w = window.open("","_blank","width=780,height=900");
+  if(!w){ sNotify("⚠️","يرجى السماح بالنوافذ المنبثقة","info",3000); return; }
+  w.document.write(html);
+  w.document.close();
+}
+
 function sendPOSReceiptWA(){
   if(!lastPOSOrder) return;
   const tx = lastPOSOrder;
@@ -12600,6 +13658,19 @@ function renderPOSTodayOrders(){
 }
 
 // Menu CRUD
+function selectMenuCat(btn, cat){
+  document.querySelectorAll(".mi-cat-btn").forEach(b=>{
+    b.style.fontWeight="700";
+    b.style.opacity="0.7";
+    b.style.transform="scale(1)";
+  });
+  btn.style.opacity="1";
+  btn.style.transform="scale(1.06)";
+  btn.style.boxShadow="0 0 0 2px "+btn.style.borderColor;
+  const inp = document.getElementById("mi-cat");
+  if(inp) inp.value = cat;
+}
+
 function openMenuItemM(idx){
   menuItemEdit = idx!==undefined ? idx : null;
   document.getElementById("menu-item-title").textContent = menuItemEdit!==null ? "✏️ تعديل صنف" : "🍴 إضافة صنف";
@@ -12609,6 +13680,14 @@ function openMenuItemM(idx){
   document.getElementById("mi-emoji").value = item ? (item.emoji||"") : "";
   document.getElementById("mi-cat").value = item ? (item.cat||"أكل 🍽️") : "أكل 🍽️";
   document.getElementById("mi-note").value = item ? (item.note||"") : "";
+  // Highlight the right category button
+  const targetCat = item ? (item.cat||"أكل 🍽️") : "أكل 🍽️";
+  document.querySelectorAll(".mi-cat-btn").forEach(b=>{
+    const isActive = b.dataset.cat === targetCat;
+    b.style.opacity = isActive ? "1" : "0.6";
+    b.style.transform = isActive ? "scale(1.06)" : "scale(1)";
+    b.style.boxShadow = isActive ? "0 0 0 2px "+b.style.borderColor : "none";
+  });
   document.getElementById("menu-item-modal").classList.add("on");
 }
 
@@ -12620,7 +13699,7 @@ function saveMenuItem(){
   const item = {
     name, price,
     emoji: document.getElementById("mi-emoji").value.trim()||"🍽️",
-    cat: document.getElementById("mi-cat").value,
+    cat: document.getElementById("mi-cat").value || "أكل 🍽️",
     note: document.getElementById("mi-note").value.trim(),
   };
   if(menuItemEdit!==null) restMenu[menuItemEdit]=item; else restMenu.push(item);
@@ -12636,6 +13715,7 @@ function deleteMenuItem(i){
   sv("dta_rest_menu", restMenu);
   renderMenuEditor();
   renderPOSMenu();
+  renderPOSCatQuick();
 }
 
 // ══ override renderRestaurant to support POS filter ══
