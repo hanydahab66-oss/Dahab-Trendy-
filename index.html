@@ -793,6 +793,11 @@ select option{background:#1a1a2e;color:var(--text)}
 </div>
 <div class="banner" id="banner">✅ Data imported successfully!</div>
 <div class="toast" id="toast">✓ Saved!</div>
+<div id="undo-toast" style="display:none;position:fixed;bottom:18px;right:18px;background:#e67e22;color:#fff;padding:10px 16px;border-radius:8px;font-weight:700;font-size:13px;z-index:1000;display:none;align-items:center;gap:10px;box-shadow:0 4px 16px rgba(0,0,0,0.4);">
+  <span id="undo-toast-msg"></span>
+  <button id="undo-toast-btn" style="background:#fff;color:#e67e22;border:none;padding:5px 11px;border-radius:5px;font-weight:700;font-size:12px;cursor:pointer;">↩️ تراجع</button>
+  <span id="undo-toast-timer" style="font-size:11px;opacity:0.8;min-width:14px;text-align:center;"></span>
+</div>
 <div id="page-dashboard" class="page on">
 <h2 style="color:var(--gold);margin-bottom:14px;font-size:18px;">📊 <span class="t" data-ar="الرئيسية" data-en="Dashboard">Dashboard</span></h2>
 
@@ -3248,12 +3253,50 @@ function renderBirthdayAlerts(){
 }
 
 // ═══════════ LAUNDRY ALERTS ═══════════
+let _laundryUndoTimer=null;
+
+function showUndoToast(msg, onUndo, seconds=5){
+  const el=document.getElementById("undo-toast");
+  const msgEl=document.getElementById("undo-toast-msg");
+  const btn=document.getElementById("undo-toast-btn");
+  const timerEl=document.getElementById("undo-toast-timer");
+  if(!el) return;
+  if(_laundryUndoTimer){ clearInterval(_laundryUndoTimer); }
+  msgEl.textContent=msg;
+  el.style.display="flex";
+  let remaining=seconds;
+  timerEl.textContent=remaining+"s";
+  btn.onclick=function(){
+    clearInterval(_laundryUndoTimer);
+    el.style.display="none";
+    onUndo();
+  };
+  _laundryUndoTimer=setInterval(()=>{
+    remaining--;
+    timerEl.textContent=remaining+"s";
+    if(remaining<=0){
+      clearInterval(_laundryUndoTimer);
+      el.style.display="none";
+    }
+  },1000);
+}
+
 function markLaundryDone(i){
+  const room=bookings[i].laundryRoom;
+  if(!confirm("🧺 تأكيد غسيل الغرفة "+room+"\n\nهل أنت متأكد؟")) return;
+  const prevNeeded=bookings[i].laundryNeeded;
+  const prevDoneTime=bookings[i].laundryDoneTime||null;
   bookings[i].laundryNeeded=false;
   bookings[i].laundryDoneTime=new Date().toISOString();
   sv("dta_bk",bookings);
   renderDashboard();
-  showToast("🧺 تم تسجيل غسيل الغرفة "+bookings[i].laundryRoom+" ✅");
+  showUndoToast("🧺 تم تسجيل غسيل الغرفة "+room+" ✅", function(){
+    bookings[i].laundryNeeded=prevNeeded;
+    bookings[i].laundryDoneTime=prevDoneTime;
+    sv("dta_bk",bookings);
+    renderDashboard();
+    showToast("↩️ تم التراجع — غرفة "+room+" رجعت للقائمة");
+  });
 }
 
 function renderLaundryAlerts(){
