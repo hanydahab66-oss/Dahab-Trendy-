@@ -818,6 +818,8 @@ select option{background:#1a1a2e;color:var(--text)}
 <div class="card"><div class="ctitle">🏨 <span class="t" data-ar="حالة الغرف" data-en="Room Status">Room Status</span></div><div id="db-rooms"></div></div>
 <div class="card"><div class="ctitle">📋 <span class="t" data-ar="آخر الحجوزات" data-en="Recent Bookings">Recent Bookings</span></div><div id="db-recent-alerts" style="margin-bottom:8px;"></div><div id="db-recent"></div></div>
 </div>
+<!-- 🧺 LAUNDRY ALERTS -->
+<div id="db-laundry-alerts" style="margin-top:12px;"></div>
 <!-- 🔔 EMPTY ROOM ALERTS -->
 <div id="db-empty-room-alerts" style="margin-top:12px;"></div>
 <!-- 🎂 BIRTHDAY ALERTS -->
@@ -3241,6 +3243,44 @@ function renderBirthdayAlerts(){
   el.innerHTML="<div class='card' style='padding:12px 16px;border-color:rgba(245,197,24,0.4);background:rgba(245,197,24,0.04);margin-bottom:0;'>"+
     "<div class='ctitle' style='color:#f5c518;'>🎂 "+(ar?"أعياد الميلاد القادمة (7 أيام)":"Upcoming Birthdays (7 days)")+
     " <span style='background:#f5c518;color:#1a1a2e;border-radius:20px;padding:1px 8px;font-size:11px;'>"+upcoming.length+"</span></div>"+
+    "<div style='display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:8px;'>"+cards.join("")+"</div>"+
+  "</div>";
+}
+
+// ═══════════ LAUNDRY ALERTS ═══════════
+function markLaundryDone(i){
+  bookings[i].laundryNeeded=false;
+  bookings[i].laundryDoneTime=new Date().toISOString();
+  sv("dta_bk",bookings);
+  renderDashboard();
+  showToast("🧺 تم تسجيل غسيل الغرفة "+bookings[i].laundryRoom+" ✅");
+}
+
+function renderLaundryAlerts(){
+  const el=document.getElementById("db-laundry-alerts");
+  if(!el) return;
+  const pending=bookings.map((b,i)=>({b,i})).filter(({b})=>b.laundryNeeded===true&&b.coConfirmed);
+  if(!pending.length){el.innerHTML='';return;}
+  const cards=pending.map(({b,i})=>{
+    const coTime=b.coTime?new Date(b.coTime):null;
+    const hoursAgo=coTime?Math.round((new Date()-coTime)/3600000):0;
+    const urgency=hoursAgo>=6?'rgba(231,76,60,0.15)':'rgba(230,126,34,0.12)';
+    const border=hoursAgo>=6?'rgba(231,76,60,0.5)':'rgba(230,126,34,0.4)';
+    const clr=hoursAgo>=6?'#e74c3c':'#e67e22';
+    const timeLabel=coTime?("منذ "+hoursAgo+" ساعة"):"";
+    return "<div style='background:"+urgency+";border:1px solid "+border+";border-radius:8px;padding:9px 13px;display:flex;align-items:center;gap:10px;'>"+
+      "<span style='font-size:24px;'>🧺</span>"+
+      "<div style='flex:1;'>"+
+        "<div style='font-weight:700;font-size:12px;color:"+clr+";'>غرفة "+b.laundryRoom+"</div>"+
+        "<div style='font-size:11px;color:var(--muted);margin-top:1px;'>"+b.laundryGuest+" · "+timeLabel+"</div>"+
+        "<div style='font-size:10px;color:var(--muted);margin-top:2px;'>ملايات وفوط تحتاج غسيل</div>"+
+      "</div>"+
+      "<button onclick='markLaundryDone("+i+")' style='background:#27ae60;color:#fff;border:none;padding:7px 13px;border-radius:6px;cursor:pointer;font-size:11px;font-weight:700;white-space:nowrap;'>✅ تم الغسيل</button>"+
+    "</div>";
+  });
+  el.innerHTML="<div class='card' style='padding:12px 16px;border-color:rgba(230,126,34,0.4);background:rgba(230,126,34,0.03);margin-bottom:0;'>"+
+    "<div class='ctitle' style='color:#e67e22;'>🧺 غرف تحتاج غسيل ملايات وفوط"+
+    " <span style='background:#e67e22;color:#fff;border-radius:20px;padding:1px 8px;font-size:11px;'>"+pending.length+"</span></div>"+
     "<div style='display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:8px;'>"+cards.join("")+"</div>"+
   "</div>";
 }
@@ -5709,6 +5749,10 @@ const dateStr=now.toLocaleDateString("en-GB",{day:"2-digit",month:"short",year:"
 if(!confirm("🛫 تأكيد Check-out للضيف: "+b.name+"\nغرفة: "+b.room+"\nالوقت: "+dateStr+" "+timeStr+"\n\nهل أنت متأكد؟")) return;
 b.coConfirmed=true;
 b.coTime=now.toISOString();
+b.laundryNeeded=true;
+b.laundryRoom=b.room;
+b.laundryGuest=b.name;
+b.laundryDate=now.toISOString();
 sv("dta_bk",bookings);
 // ✅ FIX v14-20: Immediately free the room upon manual CO confirmation
 // (don't wait for autoUpdateRooms 11AM time check)
@@ -8684,7 +8728,7 @@ chartOccupancy=new Chart(c2,cfgOcc);
 }
 // Patch renderDashboard to also call renderCharts
 const _origRenderDashboard=renderDashboard;
-renderDashboard=function(){_origRenderDashboard.apply(this,arguments);if(typeof updateBirthdayBadge==='function') updateBirthdayBadge();renderEmptyRoomAlerts();};
+renderDashboard=function(){_origRenderDashboard.apply(this,arguments);if(typeof updateBirthdayBadge==='function') updateBirthdayBadge();renderEmptyRoomAlerts();renderLaundryAlerts();};
 // ════════════════════════════════════════════
 // ══ FEATURE 2: VISUAL BOOKING CALENDAR ══
 // ════════════════════════════════════════════
